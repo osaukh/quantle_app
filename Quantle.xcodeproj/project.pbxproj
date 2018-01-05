@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0618109B1AB2CF5800C01375 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0618109A1AB2CF5800C01375 /* QuartzCore.framework */; };
+		063454421A7BF4BA002E3B5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 063454411A7BF4BA002E3B5D /* main.m */; };
+		063454451A7BF4BB002E3B5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 063454441A7BF4BB002E3B5D /* AppDelegate.m */; };
+		0634544E1A7BF4BB002E3B5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0634544C1A7BF4BB002E3B5D /* Main.storyboard */; };
+		063C8F6B1AC8A7A200E9D57B /* StatisticsEditDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 063C8F691AC8A7A200E9D57B /* StatisticsEditDescriptionVC.m */; };
+		06679D271AB19BF9007FAE7A /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06679D261AB19BF9007FAE7A /* AboutVC.m */; };
+		0668786C1B02A8CF00847902 /* DetailsCountersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 066878661B02A8CF00847902 /* DetailsCountersVC.m */; };
+		0668786D1B02A8CF00847902 /* DetailsPausesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 066878681B02A8CF00847902 /* DetailsPausesVC.m */; };
+		0668786E1B02A8CF00847902 /* DetailsRateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668786A1B02A8CF00847902 /* DetailsRateVC.m */; };
+		067727031B077B110092C559 /* ASP.c in Sources */ = {isa = PBXBuildFile; fileRef = 067727011B077B110092C559 /* ASP.c */; };
+		068D750A1AC60436008D12CF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068D75091AC60436008D12CF /* MobileCoreServices.framework */; };
+		06A993401A7E77A4000CE3C1 /* RecordTalkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A9933F1A7E77A4000CE3C1 /* RecordTalkVC.m */; };
+		06AA9AD21A8BF91F0073F45F /* OngoingTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AA9AD11A8BF91F0073F45F /* OngoingTalk.m */; };
+		06B9F2181AB1850300059DBC /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B9F2171AB1850300059DBC /* SettingsVC.m */; };
+		06C6E2231EC89606006ADAB4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C6E2221EC89606006ADAB4 /* Images.xcassets */; };
+		06C6E2261EC8A1E0006ADAB4 /* QuantleCoreDataImport.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE9401AB0721D005B292E /* QuantleCoreDataImport.sqlite */; };
+		06D2BD081A857694004AA478 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD061A857694004AA478 /* AVFoundation.framework */; };
+		06D2BD091A857694004AA478 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD071A857694004AA478 /* GLKit.framework */; };
+		06D2BD0C1A8576AD004AA478 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD0A1A8576AD004AA478 /* AudioToolbox.framework */; };
+		06D2BD0D1A8576AD004AA478 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD0B1A8576AD004AA478 /* Foundation.framework */; };
+		06D2BD101A8576C5004AA478 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD0E1A8576C5004AA478 /* CoreGraphics.framework */; };
+		06D2BD111A8576C5004AA478 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D2BD0F1A8576C5004AA478 /* UIKit.framework */; };
+		06D42F641B0F086200B00033 /* ExtremaVector.c in Sources */ = {isa = PBXBuildFile; fileRef = 06D42F621B0F086200B00033 /* ExtremaVector.c */; };
+		06D42F6B1B0F28C100B00033 /* dywapitchtrack.c in Sources */ = {isa = PBXBuildFile; fileRef = 06D42F691B0F28C100B00033 /* dywapitchtrack.c */; };
+		06D60ED01B1F5259002A722C /* DetailsPitchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D60ECF1B1F5259002A722C /* DetailsPitchVC.m */; };
+		06D60ED31B1F5410002A722C /* DetailsVolumeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D60ED21B1F5410002A722C /* DetailsVolumeVC.m */; };
+		06FAE8EE1AAF8768005B292E /* HistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE8ED1AAF8768005B292E /* HistoryVC.m */; };
+		06FAE8F01AAF92FD005B292E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FAE8EF1AAF92FD005B292E /* CoreData.framework */; };
+		06FAE8F21AAF9332005B292E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FAE8F11AAF9332005B292E /* SystemConfiguration.framework */; };
+		06FAE8F61AAF93E5005B292E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FAE8F51AAF93E5005B292E /* libicucore.dylib */; };
+		06FAE8F81AAF93F1005B292E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FAE8F71AAF93F1005B292E /* libz.dylib */; };
+		06FAE8FD1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE8FB1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodeld */; };
+		06FAE9011AB049DB005B292E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FAE9001AB049DB005B292E /* libsqlite3.dylib */; };
+		06FAE9061AB05075005B292E /* TalkData.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE9051AB05075005B292E /* TalkData.m */; };
+		06FAE9451AB0D52F005B292E /* StatisticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE9441AB0D52F005B292E /* StatisticsVC.m */; };
+		6548470190FD9DC84089B1B2 /* libPods-Quantle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6601CEE7BB4A62C73FF44A76 /* libPods-Quantle.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0618109A1AB2CF5800C01375 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0634543C1A7BF4BA002E3B5D /* Quantle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quantle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		063454401A7BF4BA002E3B5D /* Quantle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quantle-Info.plist"; sourceTree = "<group>"; };
+		063454411A7BF4BA002E3B5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		063454431A7BF4BA002E3B5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		063454441A7BF4BB002E3B5D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0634544D1A7BF4BB002E3B5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		063C8F691AC8A7A200E9D57B /* StatisticsEditDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsEditDescriptionVC.m; sourceTree = "<group>"; };
+		063C8F6A1AC8A7A200E9D57B /* StatisticsEditDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsEditDescriptionVC.h; sourceTree = "<group>"; };
+		064B148C1B067FA700DD3045 /* ASP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASP.h; sourceTree = "<group>"; };
+		06679D251AB19BF9007FAE7A /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
+		06679D261AB19BF9007FAE7A /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
+		066878661B02A8CF00847902 /* DetailsCountersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCountersVC.m; sourceTree = "<group>"; };
+		066878671B02A8CF00847902 /* DetailsPausesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsPausesVC.h; sourceTree = "<group>"; };
+		066878681B02A8CF00847902 /* DetailsPausesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsPausesVC.m; sourceTree = "<group>"; };
+		066878691B02A8CF00847902 /* DetailsRateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsRateVC.h; sourceTree = "<group>"; };
+		0668786A1B02A8CF00847902 /* DetailsRateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsRateVC.m; sourceTree = "<group>"; };
+		0668786B1B02A8CF00847902 /* DetailsCountersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCountersVC.h; sourceTree = "<group>"; };
+		0668786F1B0337AA00847902 /* StatisticsDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsDetails.h; sourceTree = "<group>"; };
+		067727011B077B110092C559 /* ASP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASP.c; sourceTree = "<group>"; };
+		068D75091AC60436008D12CF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		06A9933E1A7E77A4000CE3C1 /* RecordTalkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTalkVC.h; sourceTree = "<group>"; };
+		06A9933F1A7E77A4000CE3C1 /* RecordTalkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTalkVC.m; sourceTree = "<group>"; };
+		06AA9ACE1A8ABA170073F45F /* OngoingTalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingTalk.h; sourceTree = "<group>"; };
+		06AA9AD11A8BF91F0073F45F /* OngoingTalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingTalk.m; sourceTree = "<group>"; };
+		06B9F2161AB1850300059DBC /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
+		06B9F2171AB1850300059DBC /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
+		06C6E2221EC89606006ADAB4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		06D2BD061A857694004AA478 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		06D2BD071A857694004AA478 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		06D2BD0A1A8576AD004AA478 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		06D2BD0B1A8576AD004AA478 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		06D2BD0E1A8576C5004AA478 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		06D2BD0F1A8576C5004AA478 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		06D42F621B0F086200B00033 /* ExtremaVector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ExtremaVector.c; sourceTree = "<group>"; };
+		06D42F631B0F086200B00033 /* ExtremaVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtremaVector.h; sourceTree = "<group>"; };
+		06D42F691B0F28C100B00033 /* dywapitchtrack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dywapitchtrack.c; sourceTree = "<group>"; };
+		06D42F6A1B0F28C100B00033 /* dywapitchtrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dywapitchtrack.h; sourceTree = "<group>"; };
+		06D60ECE1B1F5259002A722C /* DetailsPitchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsPitchVC.h; sourceTree = "<group>"; };
+		06D60ECF1B1F5259002A722C /* DetailsPitchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsPitchVC.m; sourceTree = "<group>"; };
+		06D60ED11B1F5410002A722C /* DetailsVolumeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsVolumeVC.h; sourceTree = "<group>"; };
+		06D60ED21B1F5410002A722C /* DetailsVolumeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsVolumeVC.m; sourceTree = "<group>"; };
+		06FAE8EC1AAF8755005B292E /* HistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryVC.h; sourceTree = "<group>"; };
+		06FAE8ED1AAF8768005B292E /* HistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryVC.m; sourceTree = "<group>"; };
+		06FAE8EF1AAF92FD005B292E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		06FAE8F11AAF9332005B292E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		06FAE8F31AAF9365005B292E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		06FAE8F51AAF93E5005B292E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		06FAE8F71AAF93F1005B292E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		06FAE8FC1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuantleCoreDataImport.xcdatamodel; sourceTree = "<group>"; };
+		06FAE9001AB049DB005B292E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		06FAE9031AB04C2E005B292E /* Quantle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Quantle-Prefix.pch"; sourceTree = "<group>"; };
+		06FAE9041AB0505A005B292E /* TalkData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkData.h; sourceTree = "<group>"; };
+		06FAE9051AB05075005B292E /* TalkData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TalkData.m; sourceTree = "<group>"; };
+		06FAE9401AB0721D005B292E /* QuantleCoreDataImport.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuantleCoreDataImport.sqlite; sourceTree = "<group>"; };
+		06FAE9431AB0D52F005B292E /* StatisticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsVC.h; sourceTree = "<group>"; };
+		06FAE9441AB0D52F005B292E /* StatisticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsVC.m; sourceTree = "<group>"; };
+		6601CEE7BB4A62C73FF44A76 /* libPods-Quantle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Quantle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD700E00BE3A25DB2494E6C /* Pods-Quantle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quantle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quantle/Pods-Quantle.release.xcconfig"; sourceTree = "<group>"; };
+		AC52145D045BE2A275053AE1 /* Pods-Quantle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quantle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quantle/Pods-Quantle.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		063454391A7BF4BA002E3B5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				068D750A1AC60436008D12CF /* MobileCoreServices.framework in Frameworks */,
+				0618109B1AB2CF5800C01375 /* QuartzCore.framework in Frameworks */,
+				06FAE9011AB049DB005B292E /* libsqlite3.dylib in Frameworks */,
+				06FAE8F81AAF93F1005B292E /* libz.dylib in Frameworks */,
+				06FAE8F61AAF93E5005B292E /* libicucore.dylib in Frameworks */,
+				06FAE8F21AAF9332005B292E /* SystemConfiguration.framework in Frameworks */,
+				06FAE8F01AAF92FD005B292E /* CoreData.framework in Frameworks */,
+				06D2BD101A8576C5004AA478 /* CoreGraphics.framework in Frameworks */,
+				06D2BD111A8576C5004AA478 /* UIKit.framework in Frameworks */,
+				06D2BD0C1A8576AD004AA478 /* AudioToolbox.framework in Frameworks */,
+				06D2BD0D1A8576AD004AA478 /* Foundation.framework in Frameworks */,
+				06D2BD081A857694004AA478 /* AVFoundation.framework in Frameworks */,
+				06D2BD091A857694004AA478 /* GLKit.framework in Frameworks */,
+				6548470190FD9DC84089B1B2 /* libPods-Quantle.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		063454331A7BF4BA002E3B5D = {
+			isa = PBXGroup;
+			children = (
+				06C6E2221EC89606006ADAB4 /* Images.xcassets */,
+				068D75091AC60436008D12CF /* MobileCoreServices.framework */,
+				0618109A1AB2CF5800C01375 /* QuartzCore.framework */,
+				06FAE9001AB049DB005B292E /* libsqlite3.dylib */,
+				06FAE8F71AAF93F1005B292E /* libz.dylib */,
+				06FAE8F51AAF93E5005B292E /* libicucore.dylib */,
+				06FAE8F31AAF9365005B292E /* CoreText.framework */,
+				06FAE8F11AAF9332005B292E /* SystemConfiguration.framework */,
+				06FAE8EF1AAF92FD005B292E /* CoreData.framework */,
+				06D2BD0E1A8576C5004AA478 /* CoreGraphics.framework */,
+				06D2BD0F1A8576C5004AA478 /* UIKit.framework */,
+				06D2BD0A1A8576AD004AA478 /* AudioToolbox.framework */,
+				06D2BD0B1A8576AD004AA478 /* Foundation.framework */,
+				06D2BD061A857694004AA478 /* AVFoundation.framework */,
+				06D2BD071A857694004AA478 /* GLKit.framework */,
+				0634543E1A7BF4BA002E3B5D /* Quantle */,
+				0634543D1A7BF4BA002E3B5D /* Products */,
+				19DA4E91B68AB6A0E902FE2E /* Pods */,
+				68F30C218D5F4F4C7C1573D5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0634543D1A7BF4BA002E3B5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0634543C1A7BF4BA002E3B5D /* Quantle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0634543E1A7BF4BA002E3B5D /* Quantle */ = {
+			isa = PBXGroup;
+			children = (
+				06D42F6A1B0F28C100B00033 /* dywapitchtrack.h */,
+				06D42F691B0F28C100B00033 /* dywapitchtrack.c */,
+				064B148C1B067FA700DD3045 /* ASP.h */,
+				067727011B077B110092C559 /* ASP.c */,
+				06D42F631B0F086200B00033 /* ExtremaVector.h */,
+				06D42F621B0F086200B00033 /* ExtremaVector.c */,
+				063454431A7BF4BA002E3B5D /* AppDelegate.h */,
+				063454441A7BF4BB002E3B5D /* AppDelegate.m */,
+				06FAE9041AB0505A005B292E /* TalkData.h */,
+				06FAE9051AB05075005B292E /* TalkData.m */,
+				06AA9ACE1A8ABA170073F45F /* OngoingTalk.h */,
+				06AA9AD11A8BF91F0073F45F /* OngoingTalk.m */,
+				06A9933E1A7E77A4000CE3C1 /* RecordTalkVC.h */,
+				06A9933F1A7E77A4000CE3C1 /* RecordTalkVC.m */,
+				06FAE9431AB0D52F005B292E /* StatisticsVC.h */,
+				06FAE9441AB0D52F005B292E /* StatisticsVC.m */,
+				0668786F1B0337AA00847902 /* StatisticsDetails.h */,
+				0668786B1B02A8CF00847902 /* DetailsCountersVC.h */,
+				066878661B02A8CF00847902 /* DetailsCountersVC.m */,
+				066878691B02A8CF00847902 /* DetailsRateVC.h */,
+				0668786A1B02A8CF00847902 /* DetailsRateVC.m */,
+				066878671B02A8CF00847902 /* DetailsPausesVC.h */,
+				066878681B02A8CF00847902 /* DetailsPausesVC.m */,
+				06D60ECE1B1F5259002A722C /* DetailsPitchVC.h */,
+				06D60ECF1B1F5259002A722C /* DetailsPitchVC.m */,
+				06D60ED11B1F5410002A722C /* DetailsVolumeVC.h */,
+				06D60ED21B1F5410002A722C /* DetailsVolumeVC.m */,
+				06FAE8EC1AAF8755005B292E /* HistoryVC.h */,
+				06FAE8ED1AAF8768005B292E /* HistoryVC.m */,
+				063C8F6A1AC8A7A200E9D57B /* StatisticsEditDescriptionVC.h */,
+				063C8F691AC8A7A200E9D57B /* StatisticsEditDescriptionVC.m */,
+				06B9F2161AB1850300059DBC /* SettingsVC.h */,
+				06B9F2171AB1850300059DBC /* SettingsVC.m */,
+				06679D251AB19BF9007FAE7A /* AboutVC.h */,
+				06679D261AB19BF9007FAE7A /* AboutVC.m */,
+				0634544C1A7BF4BB002E3B5D /* Main.storyboard */,
+				06FAE9401AB0721D005B292E /* QuantleCoreDataImport.sqlite */,
+				06FAE8FB1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodeld */,
+				0634543F1A7BF4BA002E3B5D /* Supporting Files */,
+			);
+			path = Quantle;
+			sourceTree = "<group>";
+		};
+		0634543F1A7BF4BA002E3B5D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06FAE9031AB04C2E005B292E /* Quantle-Prefix.pch */,
+				063454401A7BF4BA002E3B5D /* Quantle-Info.plist */,
+				063454411A7BF4BA002E3B5D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19DA4E91B68AB6A0E902FE2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC52145D045BE2A275053AE1 /* Pods-Quantle.debug.xcconfig */,
+				9CD700E00BE3A25DB2494E6C /* Pods-Quantle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		68F30C218D5F4F4C7C1573D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6601CEE7BB4A62C73FF44A76 /* libPods-Quantle.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0634543B1A7BF4BA002E3B5D /* Quantle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 063454621A7BF4BB002E3B5D /* Build configuration list for PBXNativeTarget "Quantle" */;
+			buildPhases = (
+				1AB9E9AB79C1FB13D4B4FAD3 /* [CP] Check Pods Manifest.lock */,
+				063454381A7BF4BA002E3B5D /* Sources */,
+				063454391A7BF4BA002E3B5D /* Frameworks */,
+				0634543A1A7BF4BA002E3B5D /* Resources */,
+				B3B82B96B2767BAB8A7A1D66 /* [CP] Embed Pods Frameworks */,
+				B3F814D4BD74DED16A5D62BF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Quantle;
+			productName = Quantle;
+			productReference = 0634543C1A7BF4BA002E3B5D /* Quantle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		063454341A7BF4BA002E3B5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Olga Saukh";
+				TargetAttributes = {
+					0634543B1A7BF4BA002E3B5D = {
+						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 063454371A7BF4BA002E3B5D /* Build configuration list for PBXProject "Quantle" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 063454331A7BF4BA002E3B5D;
+			productRefGroup = 0634543D1A7BF4BA002E3B5D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0634543B1A7BF4BA002E3B5D /* Quantle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0634543A1A7BF4BA002E3B5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06C6E2261EC8A1E0006ADAB4 /* QuantleCoreDataImport.sqlite in Resources */,
+				0634544E1A7BF4BB002E3B5D /* Main.storyboard in Resources */,
+				06C6E2231EC89606006ADAB4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AB9E9AB79C1FB13D4B4FAD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3B82B96B2767BAB8A7A1D66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quantle/Pods-Quantle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3F814D4BD74DED16A5D62BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quantle/Pods-Quantle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		063454381A7BF4BA002E3B5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06FAE8FD1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodeld in Sources */,
+				06FAE8EE1AAF8768005B292E /* HistoryVC.m in Sources */,
+				06D42F641B0F086200B00033 /* ExtremaVector.c in Sources */,
+				06FAE9061AB05075005B292E /* TalkData.m in Sources */,
+				063454451A7BF4BB002E3B5D /* AppDelegate.m in Sources */,
+				06A993401A7E77A4000CE3C1 /* RecordTalkVC.m in Sources */,
+				063C8F6B1AC8A7A200E9D57B /* StatisticsEditDescriptionVC.m in Sources */,
+				06FAE9451AB0D52F005B292E /* StatisticsVC.m in Sources */,
+				063454421A7BF4BA002E3B5D /* main.m in Sources */,
+				06AA9AD21A8BF91F0073F45F /* OngoingTalk.m in Sources */,
+				06B9F2181AB1850300059DBC /* SettingsVC.m in Sources */,
+				0668786E1B02A8CF00847902 /* DetailsRateVC.m in Sources */,
+				067727031B077B110092C559 /* ASP.c in Sources */,
+				0668786C1B02A8CF00847902 /* DetailsCountersVC.m in Sources */,
+				0668786D1B02A8CF00847902 /* DetailsPausesVC.m in Sources */,
+				06D60ED01B1F5259002A722C /* DetailsPitchVC.m in Sources */,
+				06D60ED31B1F5410002A722C /* DetailsVolumeVC.m in Sources */,
+				06679D271AB19BF9007FAE7A /* AboutVC.m in Sources */,
+				06D42F6B1B0F28C100B00033 /* dywapitchtrack.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0634544C1A7BF4BB002E3B5D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0634544D1A7BF4BB002E3B5D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		063454601A7BF4BB002E3B5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		063454611A7BF4BB002E3B5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		063454631A7BF4BB002E3B5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC52145D045BE2A275053AE1 /* Pods-Quantle.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2B4CR698GC;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quantle/Quantle-Prefix.pch";
+				INFOPLIST_FILE = "Quantle/Quantle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chatterboxbit.quantle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		063454641A7BF4BB002E3B5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CD700E00BE3A25DB2494E6C /* Pods-Quantle.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2B4CR698GC;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quantle/Quantle-Prefix.pch";
+				INFOPLIST_FILE = "Quantle/Quantle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chatterboxbit.quantle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		063454371A7BF4BA002E3B5D /* Build configuration list for PBXProject "Quantle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				063454601A7BF4BB002E3B5D /* Debug */,
+				063454611A7BF4BB002E3B5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		063454621A7BF4BB002E3B5D /* Build configuration list for PBXNativeTarget "Quantle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				063454631A7BF4BB002E3B5D /* Debug */,
+				063454641A7BF4BB002E3B5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		06FAE8FB1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				06FAE8FC1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodel */,
+			);
+			currentVersion = 06FAE8FC1AAFACCC005B292E /* QuantleCoreDataImport.xcdatamodel */;
+			path = QuantleCoreDataImport.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 063454341A7BF4BA002E3B5D /* Project object */;
+}
