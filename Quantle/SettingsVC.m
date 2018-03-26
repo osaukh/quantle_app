@@ -188,7 +188,7 @@ NSString *fileName;
 bool noFin;
 
 - (IBAction)runTestLocalFile:(id)sender {
-    fileName = @"one/test.wav";
+    fileName = @"one/audio1000hzsine3s.wav";
 //    fileName = @"special/esther_perel_3min.wav";
     NSString *wavName = [NSString stringWithFormat:@"%@/%@", [self documentsDirectoryPath], fileName];
     

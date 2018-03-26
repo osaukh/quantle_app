@@ -194,6 +194,15 @@ void ASP_inc_talkduration() {
 
 void ASP_pitch_estimation(void *buffer, unsigned int len) {
     float pitch = dywapitch_computepitch(&dywpt, buffer, 0, len);
+    
+    printf("-------");
+    printf("\nlen == %d\n", len); fflush(stdout);
+    for ( int i = 0; i < len; i++ ) {
+        printf("%d,",((unsigned *) (buffer))[i]);
+    }
+    printf("\npitch == %f\n", pitch); fflush(stdout);
+    
+    
     pitches[pitchindex % 3] = pitch;
     
     bool nicepitchrow = true;
