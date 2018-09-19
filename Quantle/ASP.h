@@ -34,14 +34,14 @@ extern "C" {
 #include "TargetConditionals.h"
     
 #define HIST_MAX_VALUES             20
-#define MIN_EXTREMA_X_DIFF          512
-#define MIN_RELATIVE_STE_DIFF       0.07
+#define ONE_BUFFER_LEN              2048
+#define MIN_EXTREMA_X_DIFF          ONE_BUFFER_LEN / 2
 
 #if TARGET_IPHONE_SIMULATOR
     #define DEBUG_OUTPUT
-    #define ONE_BUFFER_TIME         (0.0232 / 60 / 2)   // = buffer_len/rate/(sec/min)/channels = 1024 / 44100 / 60 / 2
+    #define ONE_BUFFER_TIME         (0.04644 / 60 / 2)   // = buffer_len/rate/(sec/min)/channels = 1024 / 44100 / 60 / 2
 #else
-    #define ONE_BUFFER_TIME         (0.0232 / 60)
+    #define ONE_BUFFER_TIME         (0.04644 / 60)
 #endif
     
     // Talk counters
@@ -58,7 +58,7 @@ extern "C" {
         float sum_pause_duration;
         
         // classifications and histograms updated online
-        int rate_histogram[HIST_MAX_VALUES];   // varies from 100 to 300 with step 4
+        int rate_histogram[HIST_MAX_VALUES];        // varies from 100 to 300 with step 4
         int words_by_syllables[4];                  // 1, 2, 3, 4+
         int pauses_by_length[6];                    // [.1-.2], [.2-.4], [.4-.7], [.7-1], [1-1.5], [>1.5]
         int pitch_histogram[HIST_MAX_VALUES];       // varies from 50 to 350 with step 6
@@ -71,21 +71,21 @@ extern "C" {
         float forecast_grade_level;
     } counters;
     
-    void ASP_hard_reset_counters();
-    void ASP_soft_reset_counters();
+    void ASP_hard_reset_counters(void);
+    void ASP_soft_reset_counters(void);
     
     void ASP_process_buffer(void *buffer, unsigned int len);
 
-    void ASP_syllable_estimation(void *buffer, unsigned int len);
-    void ASP_pitch_estimation(void *buffer, unsigned int len);
-    void ASP_volume_estimation(float value);
+    void ASP_syllable_estimation(void *buffer, unsigned int len, float pitch);
+    float ASP_pitch_estimation(void *buffer, unsigned int len);
+    void ASP_volume_estimation(void *buffer, unsigned int len);
     
-    void ASP_inc_talkduration();
+    void ASP_inc_talkduration(void);
     void ASP_process_maximum(int index, float value);
     void ASP_process_minimum(int index, float value);
-    void ASP_compute_comprehension_scores();
+    void ASP_compute_comprehension_scores(void);
     
-    void ASP_print();
+    void ASP_print(void);
     
 #ifdef __cplusplus
 }

@@ -21,44 +21,39 @@
 
 #include "ASP.h"
 #include "dywapitchtrack.h"
+#include "subbandpath.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-// Local extrema algorithm variables
-float lmin_elem = 0, lmax_elem = 0, p0_elem = -1, p1_elem = 0;
-int lmin_index = 0, lmax_index = 0, p0_index = 0, p1_index = 0, p2_index = 0;
-
-//bool start_over;
-float ste, maxste = 0, MIN_EXTREMA_Y_DIFF = 0;
-//float ste_window[STE_WINDOW_SIZE];
-
-// needed for pitch computation. We use real-time time-domain pitch tracking using wavelets to compute the pitch
-// source: http://www.schmittmachine.com/dywapitchtrack.html
-dywapitchtracker dywpt;
-
-// local variables needed for sound normalization. We use ... to adjust the volume.
+// Number of processed buffers
 int buffercounter = 0;
 
-// long-term maxima: 4 x 5s
-float volumaxi[4];
-int voluindex = -1;
+// Real-time time-domain pitch tracking using wavelets to compute the pitch
+// Source: http://www.schmittmachine.com/dywapitchtrack.html (Unfortunately, no more available)
+dywapitchtracker dywpt;
 
-// last 2 pitches
-float pitches[3];
-int pitchindex=-1;
-bool islastnicepitchraw;
+// Local extrema algorithm variables
+float p0_elem = -1, p1_elem = 0;
+int p0_index = 0, p1_index = 0, p2_index = 0;
+int wordpart = 0;
+
+
+
+float fit_to_interval(float value, float from, float to) {
+    value = value < from ? from : value;
+    value = value > to ? to : value;
+    return value;
+}
 
 void ASP_hard_reset_counters() {
 #if TARGET_IPHONE_SIMULATOR
     printf("SIMULATION\n"); fflush(stdout);
 #endif
     
-    dywapitch_inittracking(&dywpt);
-    
     buffercounter = 0;
-    MIN_EXTREMA_Y_DIFF = 0;
+    dywapitch_inittracking(&dywpt);
     
     counters.talk_duration = 0;
     counters.num_syllables = 0;
@@ -79,14 +74,6 @@ void ASP_hard_reset_counters() {
 
 
 void ASP_soft_reset_counters() {
-    bzero(&volumaxi, 4*sizeof(float));
-    voluindex = -1;
-    
-    islastnicepitchraw = false;
-    bzero(&pitches, 3*sizeof(float));
-    pitchindex = 0;
-    
-    maxste = 0;
 }
 
 
@@ -96,55 +83,75 @@ void ASP_process_buffer(void *buffer, unsigned int len) {
     
     // update talk duration and potentially update rate
     ASP_inc_talkduration();
+
+    // estimate pitch
+    float p = ASP_pitch_estimation(buffer,len);
     
     // estimate number of syllables
-    ASP_syllable_estimation(buffer, len);
- 
-    // estimate pitch
-    ASP_pitch_estimation(buffer,len);
-}
-
-
-void ASP_syllable_estimation(void *buffer, unsigned int len) {
-    if (voluindex==-1)
-        MIN_EXTREMA_Y_DIFF = MIN_RELATIVE_STE_DIFF;
-    else
-        MIN_EXTREMA_Y_DIFF = MIN_RELATIVE_STE_DIFF * (0.6*volumaxi[voluindex] +
-                                                  0.25*volumaxi[(4+voluindex-1)%4] +
-                                                  0.1*volumaxi[(4+voluindex-2)%4] +
-                                                  0.05*volumaxi[(4+voluindex-3)%4]);
-    // compute ste - short-time energy in buffer
-    ste = 0;
-    for (int i=0; i<len; i++) {
-        float element = *((float *) (buffer + i * sizeof(float) ));
-        ste += powf(element,2);
-    }
+    ASP_syllable_estimation(buffer, len, p);
     
-    /**
-     * Syllable recognition algorithm (local extrema finding). Online algorithm.
-     * Extremas are either /\ or \/ --> p0[index] - p1[index] - ste_sqrt[i].
-     */
+    // estimate volume
+    ASP_volume_estimation(buffer, len);
+ }
+
+float repart[ONE_BUFFER_LEN];
+float impart[ONE_BUFFER_LEN];
+
+void ASP_syllable_estimation(void *buffer, unsigned int len, float pitch) {
+    bcopy(buffer, &repart, ONE_BUFFER_LEN*sizeof(float));
+    for (int i=0; i<len; i++)
+        repart[i] = (float) ((float *) buffer)[i];
+    bzero(&impart, ONE_BUFFER_LEN*sizeof(float));
+    FFT(1, ONE_BUFFER_LEN, (float *) &repart, (float *) &impart);
+    
+//    for (int i=0; i<len; i++) {
+//        printf("%f, ", ((float *) repart)[i]);
+//    }
+//    printf("----\n\n");
+//    fflush(stdout);
+    
+    // Algorithm: https://ieeexplore.ieee.org/document/4317582/ (Subband-Based Correlation Approach)
+    // Step 1: Morgan and Fosler-Lussier, compute a trajectory that is the average product over all pairs of compressed sub-band energy trajectories.
+    // Use 4 bands max, otherwise NON-real-time (quadratic computational complexity)
+    float y = 0;
+    int n_bands = 20;
+    int L = ONE_BUFFER_LEN / 2 / n_bands;
+    for (int i=0; i<n_bands-1; i++) {
+        for (int j=i+1; j<n_bands; j++) {
+            float sum_i = 0;
+            float sum_j = 0;
+            for (int k=i*L; k<i*L+L; k++)
+                sum_i += powf( ((float *) repart)[k], 2);
+            for (int k=j*L; k<j*L+L; k++)
+                sum_j += powf( ((float *) repart)[k], 2);
+            y += sum_i * sum_j;
+        }
+    }
+//    printf("%f, ",y); fflush(stdout);
+
+    // Step 2: Syllable recognition algorithm (local extrema finding). Online algorithm.
+    // Extremas are either /\ or \/ --> Estimated by: p0_elem --> p1_elem --> y.
+    float MIN_EXTREMA_Y_DIFF = 0;
+    
     p2_index += len;
-
-    if (p0_elem <= p1_elem && p1_elem <= ste) { p1_elem = ste; p1_index = p2_index; }
-    else if (p0_elem <= p1_elem && p1_elem > ste) {
-        if ( fabsf(p1_elem-ste) > MIN_EXTREMA_Y_DIFF ) {
+    if (p0_elem <= p1_elem && p1_elem <= y) { p1_elem = y; p1_index = p2_index; }
+    else if (p0_elem <= p1_elem && p1_elem > y && pitch >= 60 && pitch < 400) {
+        if ( fabsf(p1_elem-y) > MIN_EXTREMA_Y_DIFF ) {
             if ((p1_index > MIN_EXTREMA_X_DIFF || p0_elem < 0) && p2_index-p1_index > MIN_EXTREMA_X_DIFF) {
-
 #ifdef DEBUG_OUTPUT
                 printf("RateS,%d,%f\n", buffercounter,p1_elem); fflush(stdout);  // local max found: (p1_index, p1_elem)
 #endif
                 ASP_process_maximum(p1_index, p1_elem);
                     
-                lmax_elem = p1_elem; p0_elem = p1_elem; p1_elem = ste;
+                p0_elem = p1_elem; p1_elem = y;
                 float offset = p1_index;
                 p0_index = p1_index - offset; p1_index = p2_index - offset; p2_index = p2_index - offset;
             }
         }
     }
-    else if (p0_elem >= p1_elem && p1_elem >= ste) { p1_elem = ste; p1_index = p2_index; }
-    else if (p0_elem >= p1_elem && p1_elem < ste) {
-        if ( fabsf(p1_elem-ste) > MIN_EXTREMA_Y_DIFF ) {
+    else if (p0_elem >= p1_elem && p1_elem >= y) { p1_elem = y; p1_index = p2_index; }
+    else if (p0_elem >= p1_elem && p1_elem < y) {
+        if ( fabsf(p1_elem-y) > MIN_EXTREMA_Y_DIFF ) {
             if ((p1_index > MIN_EXTREMA_X_DIFF || p0_elem < 0) && p2_index-p1_index > MIN_EXTREMA_X_DIFF) {
                 
 #ifdef DEBUG_OUTPUT
@@ -152,96 +159,13 @@ void ASP_syllable_estimation(void *buffer, unsigned int len) {
 #endif
                 ASP_process_minimum(p1_index, p1_elem);
                     
-                lmin_elem = p1_elem; p0_elem = p1_elem; p1_elem = ste;
+                p0_elem = p1_elem; p1_elem = y;
                 float offset = p1_index;
                 p0_index = p1_index - offset; p1_index = p2_index - offset; p2_index = p2_index - offset;
             }
         }
     }
-    
-    if (ste > MIN_EXTREMA_Y_DIFF)
-        ASP_volume_estimation(ste);
-    
-    // update 5sec maximum
-    maxste = (ste > maxste) ? ste : maxste;
-    int buffers_in_five_sec = (int) ((float) 1.0 / ONE_BUFFER_TIME / 20); // one minute contains 1 / ONE_BUFFER_TIME buffers
-    if (buffercounter % buffers_in_five_sec == 0) {
-        if (voluindex==-1) {
-            for (int j=0; j<4; j++)
-                volumaxi[j] = maxste;
-            voluindex = 0;
-        }
-        else {
-            voluindex = (voluindex+1) % 4;
-            volumaxi[ voluindex ] = maxste;
-        }
-        maxste=0;
-    }
-    
-#ifdef DEBUG_OUTPUT
-    printf("STE,%d,%f\n", buffercounter,ste); fflush(stdout);
-#endif
 }
-
-
-
-/**
- *  Update counters
- */
-void ASP_inc_talkduration() {
-    counters.talk_duration += ONE_BUFFER_TIME;
-}
-
-void ASP_pitch_estimation(void *buffer, unsigned int len) {
-    float pitch = dywapitch_computepitch(&dywpt, buffer, 0, len);
-    
-    printf("-------");
-    printf("\nlen == %d\n", len); fflush(stdout);
-    for ( int i = 0; i < len; i++ ) {
-        printf("%d,",((unsigned *) (buffer))[i]);
-    }
-    printf("\npitch == %f\n", pitch); fflush(stdout);
-    
-    
-    pitches[pitchindex % 3] = pitch;
-    
-    bool nicepitchrow = true;
-    for (int i=0; i<2; i++) {
-        float p1 = pitches[(pitchindex-i+3) % 3];
-        float p2 = pitches[(pitchindex-i-1+3) % 3];
-        if ( (p1 < 60 || p1 >= 360) || (p2 < 60 || p2 >= 360) || (fabsf(p1-p2) > 5) )
-            nicepitchrow = false;
-    }
-    
-    int start = 2;
-    if (nicepitchrow) {
-        if (islastnicepitchraw)
-            start=0;
-        for (int i=start; i>=0; i--) {
-#ifdef DEBUG_OUTPUT
-            printf("Pitch,%d,%f\n", buffercounter-i,pitches[(pitchindex-i+3) % 3]); fflush(stdout);
-#endif
-            int idx = (pitches[(pitchindex-i+3) % 3] - 60) / 15;
-            counters.pitch_histogram[idx]++;
-        }
-        islastnicepitchraw = true;
-    }
-    else
-        islastnicepitchraw = false;
-    pitchindex++;
-}
-
-void ASP_volume_estimation(float value) {
-    float volume = 10*log10f(1+value);
-#ifdef DEBUG_OUTPUT
-    printf("Volume,%d,%f\n", buffercounter,volume); fflush(stdout);
-#endif
-    volume = (volume < 19) ? volume : 19;
-    int idx = volume;
-    counters.volume_histogram[idx]++;
-}
-
-int wordpart = 0;
 
 // new syllable
 void ASP_process_maximum(int index, float value) {
@@ -252,30 +176,32 @@ void ASP_process_maximum(int index, float value) {
 
 // new pause, new word or gap between syllables in a word
 void ASP_process_minimum(int index, float value) {
-    float pause = ((float) index) / 44100 ; // duration in s
+    // duration between the end of previous syllable and the beginning of the next one
+    float pause = ((float) index) / 44100 ;
     float avg_pause = counters.sum_pause_duration / counters.num_pauses;
     
     // pause if greater than 0.1
     if (pause >= 0.1) {
         counters.num_pauses++;
         counters.sum_pause_duration += pause;
-        
+
+        // pause classification according to the literature (a bit more detailed): http://sixminutes.dlugan.com/pause-speech/
         if (pause >= 0.1 && pause < 0.2)
-            counters.pauses_by_length[0]++;
+        counters.pauses_by_length[0]++;
         else if (pause >= 0.2 && pause < 0.4)
-            counters.pauses_by_length[1]++;
+        counters.pauses_by_length[1]++;
         else if (pause >= 0.4 && pause < 0.7)
-            counters.pauses_by_length[2]++;
+        counters.pauses_by_length[2]++;
         else if (pause >= 0.7 && pause < 1)
-            counters.pauses_by_length[3]++;
+        counters.pauses_by_length[3]++;
         else if (pause >= 1 && pause < 1.5)
-            counters.pauses_by_length[4]++;
+        counters.pauses_by_length[4]++;
         else if (pause >= 1.5)
-            counters.pauses_by_length[5]++;
+        counters.pauses_by_length[5]++;
         
         // Increase number of sentences if pause >= factor * average pause length
         if (pause >= avg_pause * 2) // new sentence
-            counters.num_sentences++;
+        counters.num_sentences++;
         
         // Update rate histogram
         float rate = 60 / avg_pause; //( pause * 0.3 + avg_pause * 0.7);
@@ -285,7 +211,7 @@ void ASP_process_minimum(int index, float value) {
     }
     
     // Increase number of words
-    if (pause >= 0.25 * avg_pause) {
+    if (pause >= avg_pause / 4) {
         counters.num_words++;
         counters.words_by_syllables[(wordpart>4) ? 3 : wordpart-1]++;
         wordpart = 0;
@@ -293,11 +219,39 @@ void ASP_process_minimum(int index, float value) {
 }
 
 
-float fit_to_interval(float value, float from, float to) {
-    value = value < from ? from : value;
-    value = value > to ? to : value;
-    return value;
+
+void ASP_inc_talkduration() {
+    counters.talk_duration += ONE_BUFFER_TIME;
 }
+
+
+float ASP_pitch_estimation(void *buffer, unsigned int len) {
+    float pitch = dywapitch_computepitch(&dywpt, buffer, 0, len);
+    
+    if (pitch > 60 && pitch < 360) {
+        counters.pitch_histogram[ (int) ((pitch - 60) / 15) ]++;
+#ifdef DEBUG_OUTPUT
+        printf("Pitch,%d,%f\n", buffercounter, pitch); fflush(stdout);
+#endif
+    }
+    return pitch;
+}
+
+
+void ASP_volume_estimation(void *buffer, unsigned int len) {
+    float ste = 0;
+    for (int i=0; i<len; i++) {
+        ste += powf( ((float *) buffer)[i], 2);
+    }
+
+    float volume = 20*log10f( sqrtf(ste) * 10000 + 100 );
+#ifdef DEBUG_OUTPUT
+    printf("Volume,%d,%f\n", buffercounter,volume); fflush(stdout);
+#endif
+    int idx = fit_to_interval( (volume - 40) / 3, 0, 19);
+    counters.volume_histogram[idx]++;
+}
+
 
 void ASP_compute_comprehension_scores() {
     // Flesch Reading Ease

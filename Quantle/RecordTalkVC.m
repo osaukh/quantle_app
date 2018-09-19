@@ -49,7 +49,7 @@
     self.audioPlot.gain = MICGAIN;
     
     // Initialize the circular buffer
-    [EZAudioUtilities circularBuffer:&_circularBuffer withSize:1024];
+    [EZAudioUtilities circularBuffer:&_circularBuffer withSize:ONE_BUFFER_LEN];
     
     // Show text if the app is started the first time
     if (self.appDelegate.firstRun) {
