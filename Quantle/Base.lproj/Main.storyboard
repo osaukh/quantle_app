@@ -120,8 +120,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Length [minutes]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXk-tC-5Zr">
-                                                    <rect key="frame" x="55" y="5" width="124" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Length [min]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXk-tC-5Zr">
+                                                    <rect key="frame" x="55" y="5" width="92.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -185,8 +185,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Speech Rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wpw-fo-ZYn">
-                                                    <rect key="frame" x="55" y="5" width="92" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pace" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wpw-fo-ZYn">
+                                                    <rect key="frame" x="55" y="5" width="36" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -287,8 +287,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Volume" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E9y-Y9-4a1">
-                                                    <rect key="frame" x="55" y="5" width="54.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Power" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E9y-Y9-4a1">
+                                                    <rect key="frame" x="55" y="5" width="45" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -482,7 +482,7 @@
             </objects>
             <point key="canvasLocation" x="1451" y="-330"/>
         </scene>
-        <!--Speech Rate-->
+        <!--Pace-->
         <scene sceneID="DwU-02-iET">
             <objects>
                 <tableViewController id="3La-nM-RuB" customClass="DetailsRateVC" sceneMemberID="viewController">
@@ -500,8 +500,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate [syllables / minute]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4NS-dY-Gnr">
-                                                    <rect key="frame" x="55" y="5" width="174" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pace [syllables / min]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4NS-dY-Gnr">
+                                                    <rect key="frame" x="55" y="5" width="153.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -528,8 +528,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate [words / minute]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hei-Al-Jc6">
-                                                    <rect key="frame" x="55" y="5" width="156" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pace [words / min]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hei-Al-Jc6">
+                                                    <rect key="frame" x="55" y="5" width="135.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -556,8 +556,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Variability [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i90-cM-iNx">
-                                                    <rect key="frame" x="55" y="5" width="99.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pace variability [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i90-cM-iNx">
+                                                    <rect key="frame" x="55" y="5" width="137.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -579,7 +579,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Rate Variability" id="J65-g0-RIi">
+                            <tableViewSection headerTitle="Pace variability (syllables)" id="J65-g0-RIi">
                                 <cells/>
                             </tableViewSection>
                         </sections>
@@ -588,7 +588,7 @@
                             <outlet property="delegate" destination="3La-nM-RuB" id="QI1-Te-Fye"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Speech Rate" id="rIK-SS-AJu">
+                    <navigationItem key="navigationItem" title="Pace" id="rIK-SS-AJu">
                         <barButtonItem key="rightBarButtonItem" id="PTF-Xg-4Hx">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="9vJ-J2-elq">
                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
@@ -630,8 +630,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Mean Duration [s]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X8a-X5-C6T">
-                                                    <rect key="frame" x="55" y="5" width="130.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pause mean duration [s]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X8a-X5-C6T">
+                                                    <rect key="frame" x="55" y="5" width="176.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -658,8 +658,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Long Pauses [total]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SbE-2w-QRo">
-                                                    <rect key="frame" x="55" y="5" width="140.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Clauses [total]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SbE-2w-QRo">
+                                                    <rect key="frame" x="55" y="5" width="105.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -787,8 +787,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Syllables per Word" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yfz-8Y-E8i">
-                                                    <rect key="frame" x="55" y="5" width="135.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Word complexity [ratio]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yfz-8Y-E8i">
+                                                    <rect key="frame" x="55" y="5" width="170" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -843,7 +843,7 @@
             </objects>
             <point key="canvasLocation" x="1911" y="-76"/>
         </scene>
-        <!--Volume-->
+        <!--Power-->
         <scene sceneID="EI8-az-bcf">
             <objects>
                 <tableViewController id="30g-MA-72x" customClass="DetailsVolumeVC" sceneMemberID="viewController">
@@ -861,8 +861,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Mean Volume [level]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X7a-hB-iek">
-                                                    <rect key="frame" x="55" y="5" width="147.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Power mean [level]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X7a-hB-iek">
+                                                    <rect key="frame" x="55" y="5" width="138" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -889,8 +889,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Variability [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YUg-M6-gKt">
-                                                    <rect key="frame" x="55" y="5" width="99.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Power variability [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YUg-M6-gKt">
+                                                    <rect key="frame" x="55" y="5" width="147" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -912,7 +912,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Volume Variability" id="tcZ-UY-iQ3">
+                            <tableViewSection headerTitle="Power Variability" id="tcZ-UY-iQ3">
                                 <cells/>
                             </tableViewSection>
                         </sections>
@@ -921,7 +921,7 @@
                             <outlet property="delegate" destination="30g-MA-72x" id="irR-Jx-wqc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Volume" id="rPc-4B-tVQ">
+                    <navigationItem key="navigationItem" title="Power" id="rPc-4B-tVQ">
                         <barButtonItem key="rightBarButtonItem" id="g3d-vl-f8y">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="cmy-yb-G8m">
                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
@@ -1332,8 +1332,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate [syllables / minute]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fIC-EW-wk5">
-                                                    <rect key="frame" x="55" y="5" width="174" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pace [syllables / min]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fIC-EW-wk5">
+                                                    <rect key="frame" x="55" y="5" width="153.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1388,8 +1388,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Volume [level]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sdf-3E-5uO">
-                                                    <rect key="frame" x="55" y="5" width="103" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Power [level]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sdf-3E-5uO">
+                                                    <rect key="frame" x="55" y="5" width="94" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1735,7 +1735,7 @@
 
 Quantle is your presentation coach!
 
-With Quantle app you can quantify your presentation quality and compare it to anyone else's. Quantle app helps you to master public speaking: It shows you statistics on speaker performance and helps you to identify your weak spots and track your progress. 
+With Quantle you can evaluate your presentation quality and compare it to anyone else's. Quantle helps you to master public speaking: It shows you statistics on speaker performance and helps you to identify your weak spots and track your progress over time. 
 
 Quantle app respects your privacy: It neither stores your talk nor communicates any of its parts. All estimates are computed in real time.
 
@@ -1746,10 +1746,10 @@ Learn more by visiting:
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
-                                            <fragment content="http://quantle.chatterboxbit.com">
+                                            <fragment content="http://www.olgasaukh.com/quantle">
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="14"/>
-                                                    <url key="NSLink" string="http://quantle.chatterboxbit.com"/>
+                                                    <url key="NSLink" string="http://www.olgasaukh.com/quantle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -1761,16 +1761,16 @@ Contact: </string>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
-                                            <fragment content="quantle@chatterboxbit.com">
+                                            <fragment content="chatterboxbit@gmail.com">
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="14"/>
-                                                    <url key="NSLink" string="mailto:admin@chatterboxbit.com"/>
+                                                    <url key="NSLink" string="http://chatterboxbit@gmail.com"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment>
                                                 <string key="content"> 
-Texts: </string>
+Texts and Background: </string>
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="14"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -1826,7 +1826,7 @@ Texts: </string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Mean Pitch [Hz]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pQD-pE-9hK">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pitch mean [Hz]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pQD-pE-9hK">
                                                     <rect key="frame" x="55" y="5" width="117" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1854,8 +1854,8 @@ Texts: </string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Vocal Variety [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fbu-Td-Aaj">
-                                                    <rect key="frame" x="55" y="5" width="123.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pitch variability [%]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fbu-Td-Aaj">
+                                                    <rect key="frame" x="55" y="5" width="139" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1877,7 +1877,7 @@ Texts: </string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Vocal Variety" id="GHo-lr-q7L">
+                            <tableViewSection headerTitle="Pitch Variability" id="GHo-lr-q7L">
                                 <cells/>
                             </tableViewSection>
                         </sections>
