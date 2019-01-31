@@ -145,8 +145,8 @@ void zeroFields () {
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-(td.meanPitch.intValue-60)/15,2) * 36 ) * counters.pitch_histogram[i];
-    td.varPitch = (num_pitch > 0) ? @( sqrtf(rmse / num_pitch) / 150*100 ) : @(0);
+        rmse += ( powf(i-(td.meanPitch.intValue-60)/15,2) * 144 ) * counters.pitch_histogram[i];
+    td.varPitch = (num_pitch > 0) ? @( sqrtf(rmse / num_pitch) / [td.meanPitch floatValue] * 100 ) : @(0);
 }
 
 +(void) setRateData {
@@ -164,8 +164,8 @@ void zeroFields () {
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-q50,2) * 144 ) * counters.rate_histogram[i];
-    td.varRateAsSyllablesPerMinute = (num_rate > 0) ? @( sqrtf(rmse / num_rate) / 300*100) : @(0);
+        rmse += ( powf(i-q50,2) * 36 ) * counters.rate_histogram[i];
+    td.varRateAsSyllablesPerMinute = (num_rate > 0) ? @( sqrtf(rmse / num_rate) / [td.meanRateAsSyllablesPerMinute floatValue] * 100) : @(0);
 }
 
 +(void) setVolumeData {

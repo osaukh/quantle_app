@@ -101,7 +101,7 @@ void ASP_process_buffer(void *buffer, unsigned int len) {
     ASP_syllable_estimation(buffer, len);
  
     // estimate pitch
-    ASP_pitch_estimation(buffer,len);
+    ASP_pitch_estimation(buffer,len);    
 }
 
 
@@ -194,15 +194,6 @@ void ASP_inc_talkduration() {
 
 void ASP_pitch_estimation(void *buffer, unsigned int len) {
     float pitch = dywapitch_computepitch(&dywpt, buffer, 0, len);
-    
-    printf("-------");
-    printf("\nlen == %d\n", len); fflush(stdout);
-    for ( int i = 0; i < len; i++ ) {
-        printf("%d,",((unsigned *) (buffer))[i]);
-    }
-    printf("\npitch == %f\n", pitch); fflush(stdout);
-    
-    
     pitches[pitchindex % 3] = pitch;
     
     bool nicepitchrow = true;
@@ -252,40 +243,40 @@ void ASP_process_maximum(int index, float value) {
 
 // new pause, new word or gap between syllables in a word
 void ASP_process_minimum(int index, float value) {
-    float pause = ((float) index) / 44100 ; // duration in s
-    float avg_pause = counters.sum_pause_duration / counters.num_pauses;
+    float inter_syl_dist = ((float) index) / 44100 ; // duration in s
+    float avg_inter_syl_dist = counters.sum_pause_duration / counters.num_pauses;
     
-    // pause if greater than 0.1
-    if (pause >= 0.1) {
+    // this is a pause between words
+    if (inter_syl_dist >= 0.1) {
         counters.num_pauses++;
-        counters.sum_pause_duration += pause;
+        counters.sum_pause_duration += inter_syl_dist;
         
-        if (pause >= 0.1 && pause < 0.2)
+        if (inter_syl_dist >= 0.1 && inter_syl_dist < 0.2)
             counters.pauses_by_length[0]++;
-        else if (pause >= 0.2 && pause < 0.4)
+        else if (inter_syl_dist >= 0.2 && inter_syl_dist < 0.4)
             counters.pauses_by_length[1]++;
-        else if (pause >= 0.4 && pause < 0.7)
+        else if (inter_syl_dist >= 0.4 && inter_syl_dist < 0.7)
             counters.pauses_by_length[2]++;
-        else if (pause >= 0.7 && pause < 1)
+        else if (inter_syl_dist >= 0.7 && inter_syl_dist < 1)
             counters.pauses_by_length[3]++;
-        else if (pause >= 1 && pause < 1.5)
+        else if (inter_syl_dist >= 1 && inter_syl_dist < 1.5)
             counters.pauses_by_length[4]++;
-        else if (pause >= 1.5)
+        else if (inter_syl_dist >= 1.5)
             counters.pauses_by_length[5]++;
         
         // Increase number of sentences if pause >= factor * average pause length
-        if (pause >= avg_pause * 2) // new sentence
+        if (inter_syl_dist >= avg_inter_syl_dist * 2) // new sentence
             counters.num_sentences++;
         
         // Update rate histogram
-        float rate = 60 / avg_pause; //( pause * 0.3 + avg_pause * 0.7);
+        float rate = 60 / avg_inter_syl_dist;
         rate = (rate < 599) ? rate : 599;
         int idx = (rate) / 30;
         counters.rate_histogram[idx]++;
     }
     
     // Increase number of words
-    if (pause >= 0.25 * avg_pause) {
+    if (inter_syl_dist >= 0.125 * avg_inter_syl_dist) {
         counters.num_words++;
         counters.words_by_syllables[(wordpart>4) ? 3 : wordpart-1]++;
         wordpart = 0;

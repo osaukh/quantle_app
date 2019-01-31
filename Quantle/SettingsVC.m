@@ -188,8 +188,8 @@ NSString *fileName;
 bool noFin;
 
 - (IBAction)runTestLocalFile:(id)sender {
-    fileName = @"one/audio1000hzsine3s.wav";
-//    fileName = @"special/esther_perel_3min.wav";
+//    fileName = @"one/audio1000hzsine3s.wav";
+    fileName = @"one/lewinsky_snippet.wav";
     NSString *wavName = [NSString stringWithFormat:@"%@/%@", [self documentsDirectoryPath], fileName];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

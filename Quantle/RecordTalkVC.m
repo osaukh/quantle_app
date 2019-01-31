@@ -134,7 +134,11 @@ withNumberOfChannels:(UInt32)numberOfChannels {
         [self.recorder appendDataFromBufferList:bufferList withBufferSize:bufferSize];
     
     // processing
+    NSDate *methodStart = [NSDate date];
     ASP_process_buffer(bufferList->mBuffers[0].mData, bufferSize);
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+    NSLog(@"executionTime = %f (%f)", executionTime, [methodStart timeIntervalSince1970]);
     
     // update basic counters
     td.talkLength = @( counters.talk_duration );
