@@ -250,7 +250,6 @@ void ASP_process_maximum(int index, float value) {
     int buffers_in_10sec = (int) ((float) 1.0 / ONE_BUFFER_TIME / 6); // one minute contains 1 / ONE_BUFFER_TIME buffers
     if (buffercounter - spm_time_last_10sec >= buffers_in_10sec) {
         float rate = spm_syllables_last_10sec * 6; // #syllables / 10 sec * 60 sec in one minute
-        printf("rate: %f\n", rate);
         if (rate < 599 && rate > 0)
             counters.rate_histogram[(int) rate/30]++;
         spm_syllables_last_10sec = 0;
