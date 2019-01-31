@@ -38,7 +38,7 @@ float ste, maxste = 0, MIN_EXTREMA_Y_DIFF = 0;
 // source: http://www.schmittmachine.com/dywapitchtrack.html
 dywapitchtracker dywpt;
 
-// local variables needed for sound normalization. We use ... to adjust the volume.
+// local variables needed for sound normalization. We use adapt volume at runtime.
 int buffercounter = 0;
 
 // long-term maxima: 4 x 5s
@@ -49,6 +49,9 @@ int voluindex = -1;
 float pitches[3];
 int pitchindex=-1;
 bool islastnicepitchraw;
+
+int spm_syllables_last_10sec;
+float spm_time_last_10sec;
 
 void ASP_hard_reset_counters() {
 #if TARGET_IPHONE_SIMULATOR
@@ -87,6 +90,9 @@ void ASP_soft_reset_counters() {
     pitchindex = 0;
     
     maxste = 0;
+    
+    spm_syllables_last_10sec = 0;
+    spm_time_last_10sec = 0;
 }
 
 
@@ -238,12 +244,23 @@ int wordpart = 0;
 void ASP_process_maximum(int index, float value) {
     counters.num_syllables++;
     wordpart++;
+    
+    // compute rate variability over the past 10s
+    spm_syllables_last_10sec++;
+    int buffers_in_10sec = (int) ((float) 1.0 / ONE_BUFFER_TIME / 6); // one minute contains 1 / ONE_BUFFER_TIME buffers
+    if (buffercounter - spm_time_last_10sec >= buffers_in_10sec) {
+        float rate = spm_syllables_last_10sec * 6; // #syllables / 10 sec * 60 sec in one minute
+        printf("rate: %f\n", rate);
+        if (rate < 599 && rate > 0)
+            counters.rate_histogram[(int) rate/30]++;
+        spm_syllables_last_10sec = 0;
+        spm_time_last_10sec = buffercounter;
+    }
 }
-
 
 // new pause, new word or gap between syllables in a word
 void ASP_process_minimum(int index, float value) {
-    float inter_syl_dist = ((float) index) / 44100 ; // duration in s
+    float inter_syl_dist = ((float) index) / 44100; // duration in s
     float avg_inter_syl_dist = counters.sum_pause_duration / counters.num_pauses;
     
     // this is a pause between words
@@ -267,12 +284,6 @@ void ASP_process_minimum(int index, float value) {
         // Increase number of sentences if pause >= factor * average pause length
         if (inter_syl_dist >= avg_inter_syl_dist * 2) // new sentence
             counters.num_sentences++;
-        
-        // Update rate histogram
-        float rate = 60 / avg_inter_syl_dist;
-        rate = (rate < 599) ? rate : 599;
-        int idx = (rate) / 30;
-        counters.rate_histogram[idx]++;
     }
     
     // Increase number of words

@@ -140,52 +140,44 @@ void zeroFields () {
         sum_pitch += (counters.pitch_histogram[i] * (i * 15 + 60));
         num_pitch += counters.pitch_histogram[i];
     }
-    td.meanPitch = (num_pitch > 0) ? @( sum_pitch / num_pitch ) : @(0);
+    td.meanPitch = (num_pitch > 0) ? @( ((float) sum_pitch) / num_pitch ) : @(0);
     
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-(td.meanPitch.intValue-60)/15,2) * 144 ) * counters.pitch_histogram[i];
-    td.varPitch = (num_pitch > 0) ? @( sqrtf(rmse / num_pitch) / [td.meanPitch floatValue] * 100 ) : @(0);
+        rmse += ( powf(i-(td.meanPitch.floatValue-60)/15,2) * 144 ) * counters.pitch_histogram[i];
+//    td.varPitch = (num_pitch > 0) ? @( sqrtf(rmse / num_pitch) / [td.meanPitch floatValue] * 100 ) : @(0);
+    td.varPitch = (num_pitch > 0) ? @( sqrtf(rmse / num_pitch) / 150.0 * 100 ) : @(0);
 }
 
 +(void) setRateData {
-    int num_rate = 0, q50 = 0;
-    // find 50% quantile
-    for (int i=0; i<HIST_MAX_VALUES; i++)
+    int num_rate = 0, sum_rate = 0;
+    for (int i=0; i<HIST_MAX_VALUES; i++) {
+        sum_rate += (counters.rate_histogram[i] * (i * 30));
         num_rate += counters.rate_histogram [i];
-    
-    int tmp_sum = 0;
-    for (q50=0; q50<HIST_MAX_VALUES; q50++) {
-        tmp_sum += counters.rate_histogram[q50];
-        if (tmp_sum > .5 * num_rate)
-            break;
     }
+    td.meanRateAsSyllablesPerMinute = (num_rate > 0) ? @( ((float) sum_rate) / num_rate ) : @(0);
+    
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-q50,2) * 36 ) * counters.rate_histogram[i];
+        rmse += ( powf(i-td.meanRateAsSyllablesPerMinute.floatValue/30,2) * 900 ) * counters.rate_histogram[i];
     td.varRateAsSyllablesPerMinute = (num_rate > 0) ? @( sqrtf(rmse / num_rate) / [td.meanRateAsSyllablesPerMinute floatValue] * 100) : @(0);
 }
 
 +(void) setVolumeData {
-    int num_volume = 0, q50 = 0;
-    // find 50% quantile
-    for (int i=0; i<HIST_MAX_VALUES; i++)
+    int num_volume = 0, sum_volume = 0;
+    for (int i=0; i<HIST_MAX_VALUES; i++) {
+        sum_volume += counters.volume_histogram[i] * i;
         num_volume += counters.volume_histogram[i];
-    
-    int tmp_sum = 0;
-    for (q50=0; q50<HIST_MAX_VALUES; q50++) {
-        tmp_sum += counters.volume_histogram[q50];
-        if (tmp_sum > .5 * num_volume)
-            break;
     }
-    td.meanVolume = (num_volume > 0) ? @( ((float) q50) ) : @(0);
+    td.meanVolume = (num_volume > 0) ? @( ((float) sum_volume) / num_volume ) : @(0);
+    
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-q50,2) ) * counters.volume_histogram[i];
-    td.varVolume = (num_volume > 0) ? @( sqrtf(rmse / num_volume) / 25*100 ) : @(0);
+        rmse += ( powf(i-td.varVolume.floatValue,2) ) * counters.volume_histogram[i];
+    td.varVolume = (num_volume > 0) ? @( sqrtf(rmse / num_volume) / [td.meanVolume floatValue] * 100 ) : @(0);
 }
 
 

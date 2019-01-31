@@ -71,8 +71,8 @@ extern "C" {
         float forecast_grade_level;
     } counters;
     
-    void ASP_hard_reset_counters();
-    void ASP_soft_reset_counters();
+    void ASP_hard_reset_counters(void);
+    void ASP_soft_reset_counters(void);
     
     void ASP_process_buffer(void *buffer, unsigned int len);
 
@@ -80,12 +80,12 @@ extern "C" {
     void ASP_pitch_estimation(void *buffer, unsigned int len);
     void ASP_volume_estimation(float value);
     
-    void ASP_inc_talkduration();
+    void ASP_inc_talkduration(void);
     void ASP_process_maximum(int index, float value);
     void ASP_process_minimum(int index, float value);
-    void ASP_compute_comprehension_scores();
+    void ASP_compute_comprehension_scores(void);
     
-    void ASP_print();
+    void ASP_print(void);
     
 #ifdef __cplusplus
 }
