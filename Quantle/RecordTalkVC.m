@@ -131,37 +131,35 @@
     return basePath;
 }
 
-// Append the AudioBufferList from the microphone callback to a global circular buffer
+// If debug mode: append the AudioBufferList from the microphone callback to a global circular buffer
+// Process the newly arrived buffer and extract features
 -(void)microphone:(EZMicrophone *)microphone
     hasBufferList:(AudioBufferList *)bufferList
    withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
-    
-    // if debug write the original to a .wav file
-    if( self.appDelegate.debugMode )
-        [self.recorder appendDataFromBufferList:bufferList withBufferSize:bufferSize];
-    
-    // processing
-    NSDate *methodStart = [NSDate date];
-    ASP_process_buffer(bufferList->mBuffers[0].mData, bufferSize);
-    NSDate *methodFinish = [NSDate date];
-    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-    NSLog(@"executionTime = %f (%f)", executionTime, [methodStart timeIntervalSince1970]);
-    
-    // update basic counters
-    td.talkLength = @( counters.talk_duration );
-    if (counters.talk_duration)
-        td.meanRateAsSyllablesPerMinute = @(counters.num_syllables / counters.talk_duration);
-    [OngoingTalk setPitchData];
-    [OngoingTalk setVolumeData];
 
-    // update plot
+    // do processing in the background thread
     dispatch_async(dispatch_get_main_queue(), ^{
+        // if debug write the original to a .wav file
+        if( self.appDelegate.debugMode )
+            [self.recorder appendDataFromBufferList:bufferList withBufferSize:bufferSize];
+
+        // processing
+        ASP_process_buffer(bufferList->mBuffers[0].mData, bufferSize);
+        
+        // update basic counters
+        self->td.talkLength = @( counters.talk_duration );
+        if (counters.talk_duration)
+            self->td.meanRateAsSyllablesPerMinute = @(counters.num_syllables / counters.talk_duration);
+        [OngoingTalk setPitchData];
+        [OngoingTalk setVolumeData];
+        
+        // update plot
         [self.audioPlot updateBuffer:bufferList->mBuffers[0].mData withBufferSize:bufferSize];
+        
+        // update counters in UI
+        [self updateUI];
     });
-    
-    // update counters in UI
-    [self updateUI];
 }
 
 -(TPCircularBuffer *)outputShouldUseCircularBuffer:(EZOutput *)output {

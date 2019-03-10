@@ -104,7 +104,7 @@
     
     [alert addButton:@"OK" withActionBlock:^{
         NSLog(@"Remove entry from history");
-        [self.appDelegate.historyEntries removeObjectAtIndex:td_index];
+        [self.appDelegate.historyEntries removeObjectAtIndex:self->td_index];
         [self.navigationController popViewControllerAnimated:YES];
         [self.appDelegate saveHistory];
     }];

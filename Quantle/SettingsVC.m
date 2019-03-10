@@ -309,8 +309,8 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     ASP_process_buffer((void *) *buffer, bufferSize);
 }
 
--(void)audioFile:(EZAudioFile *)audioFile
- updatedPosition:(SInt64)framePosition {}
+//-(void)audioFile:(EZAudioFile *)audioFile
+// updatedPosition:(SInt64)framePosition {}
 
 #pragma mark - EZOutputDataSource
 
