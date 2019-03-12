@@ -42,6 +42,8 @@
  */
 @property (weak, nonatomic) AppDelegate *appDelegate;
 
+@property (nonatomic,weak) IBOutlet UILabel *wrd_cmplx_X;
+
 @property (nonatomic,weak) IBOutlet UILabel *wordsTotal;
 @property (nonatomic,weak) IBOutlet UILabel *syllablesTotal;
 @property (nonatomic,weak) IBOutlet UILabel *syllablesPerWord;

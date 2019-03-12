@@ -58,6 +58,15 @@
     self.pitchMean.text = [NSString stringWithFormat:@"%.02f",[td.meanPitch doubleValue]];
     self.pitchVariability.text = [NSString stringWithFormat:@"%.02f", [td.varPitch doubleValue]];
     
+    // update X pitch mean
+    CGRect frame_X_mean = self.pitch_X_mean.frame;
+    frame_X_mean.origin.x= (SCREEN_WIDTH-10) / (300-75) * ([td.meanPitch doubleValue] - 75);
+    self.pitch_X_mean.frame= frame_X_mean;
+    // update X pitch var
+    CGRect frame_X_var = self.pitch_X_var.frame;
+    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (50-5) * ([td.varPitch doubleValue] - 5);
+    self.pitch_X_var.frame= frame_X_var;
+    
     [self.tableView reloadData];
     
     // prepare xlabels
@@ -66,7 +75,7 @@
         [histxlabels addObject:@( (60 + i*15) )];
     
     // BarChart: speech rate (syllables per minute)
-    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:CGRectMake(5, 140.0, SCREEN_WIDTH, SCREEN_WIDTH)];
+    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:CGRectMake(5, 180.0, SCREEN_WIDTH, SCREEN_WIDTH * 0.8)];
     chart.backgroundColor = [UIColor clearColor];
     chart.yLabelFormatter = ^(CGFloat yValue){
         CGFloat yValueParsed = yValue;
@@ -78,7 +87,7 @@
     [chart setXLabels:histxlabels];
     chart.rotateForXAxisText = false ;
     [chart setYValues:td.histPitch];
-    [chart setStrokeColor:PNLightGreen];
+    [chart setStrokeColor:PNDeepGreen];
     chart.barBackgroundColor = PNGrey;
     [chart strokeChart];
     chart.delegate = self;

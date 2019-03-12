@@ -57,7 +57,11 @@
     self.syllablesPerWord.text = [NSString stringWithFormat:@"%.02f",
                                   [td.totalSyllables doubleValue] / [td.totalWords doubleValue]];
 
-    
+    // update X word complexity
+    CGRect frame_X = self.wrd_cmplx_X.frame;
+    frame_X.origin.x= (SCREEN_WIDTH-10) / (2.0-1.1) * ([td.totalSyllables doubleValue] / [td.totalWords doubleValue] - 1.1);
+    self.wrd_cmplx_X.frame= frame_X;
+
     [self.tableView reloadData];
     
     NSArray *items = @[[PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[0] color:PNiOSGreenColor description:@"one"],
@@ -66,7 +70,7 @@
                        [PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[3] color:PNBrown description:@"four+"],
                        ];
     
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 200.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
+    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 230.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
     pieChart.descriptionTextColor = [UIColor blackColor];
     pieChart.descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:14.0];
     [pieChart strokeChart];

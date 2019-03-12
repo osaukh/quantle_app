@@ -42,6 +42,8 @@
  */
 @property (weak, nonatomic) AppDelegate *appDelegate;
 
+@property (nonatomic,weak) IBOutlet UILabel *pace_X_pauses;
+
 @property (nonatomic,weak) IBOutlet UILabel *pausesDuration;
 @property (nonatomic,weak) IBOutlet UILabel *pausesSentences;
 

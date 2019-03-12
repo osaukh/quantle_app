@@ -84,6 +84,23 @@
     self.gunningFogIndex.text = [NSString stringWithFormat:@"%.02f", [td.gunningFogIndex doubleValue]];
     self.forecastGradeLevel.text = [NSString stringWithFormat:@"%.02f", [td.forecastGradeLevel doubleValue]];
     
+    // update X FRE
+    CGRect frame_X_FRE = self.FRE_X.frame;
+    frame_X_FRE.origin.x= (SCREEN_WIDTH-10) / (100-0) * ([td.fleschReadingEase doubleValue] - 0);
+    self.FRE_X.frame= frame_X_FRE;
+    // update X FKG
+    CGRect frame_X_FKG = self.FKG_X.frame;
+    frame_X_FKG.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.fleschKincaidGradeEase doubleValue] - 4);
+    self.FKG_X.frame= frame_X_FKG;
+    // update X GFI
+    CGRect frame_X_GFI = self.GFI_X.frame;
+    frame_X_GFI.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.gunningFogIndex doubleValue] - 4);
+    self.GFI_X.frame= frame_X_GFI;
+    // update X FGL
+    CGRect frame_X_FGL = self.FGL_X.frame;
+    frame_X_FGL.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.forecastGradeLevel doubleValue] - 4);
+    self.FGL_X.frame= frame_X_FGL;
+    
     [self.tableView reloadData];
 }
 
@@ -126,17 +143,17 @@
             msgTitle = @"Flesch Reading Ease";
             msgBody = @"90-100: easily understood by an average 11-year-old\n60-70: easily understood by 13- to 15-year-old\n0-30: best understood by university graduates.\n\nTexts in popular newspapers have score of 50-65. The U.S. Department of Defense uses this test as the standard test of readability for its documents. The formula correlates 0.70 with comprehension as measured by reading tests.\n\nMake sure your talk is easy to follow! 😜👌";
             break;
-        case 21: // http://en.m.wikipedia.org/wiki/Flesch-Kincaid_Readability_Test
+        case 22: // http://en.m.wikipedia.org/wiki/Flesch-Kincaid_Readability_Test
             msgImage = [UIImage imageNamed:@"score_fkg_24x24.png"];
             msgTitle = @"Flesch–Kincaid Grade";
             msgBody = @"Estimates the years of education needed to understand the material. It is used extensively in the field of education and presents a score as a U.S. grade level. The formula correlates 0.91 with comprehension as measured by reading tests.\n\nMake sure your talk is easy to follow! 😜👌";
             break;
-        case 22: // http://en.wikipedia.org/wiki/Gunning_fog_index
+        case 24: // http://en.wikipedia.org/wiki/Gunning_fog_index
             msgImage = [UIImage imageNamed:@"score_gfi_24x24.png"];
             msgTitle = @"Gunning Fog Index";
             msgBody = @"Estimates the years of education needed to understand the material. A fog index of 12 requires the level of a U.S. high school senior (around 18 years old). Materials for a wide audience generally need a fog index less than 12. Materials requiring near-universal understanding generally need an index less than 8. The formula correlates 0.91 with comprehension as measured by reading tests and is one of the most reliable. \n\nMake sure your talk is easy to follow! 😜👌";
             break;
-        case 23: // http://en.m.wikipedia.org/wiki/Readability#The_FORCAST_formula
+        case 26: // http://en.m.wikipedia.org/wiki/Readability#The_FORCAST_formula
             msgImage = [UIImage imageNamed:@"score_fgl_24x24.png"];
             msgTitle = @"Forecast Grade Level";
             msgBody = @"Estimates the years of education needed to understand the material. The formula was produced for the U.S. military and unlike most other formulas it is useful for materials without complete sentences. It correlates 0.66 with comprehension as measured by reading tests. \n\nMake sure your talk is easy to follow! 😜👌";

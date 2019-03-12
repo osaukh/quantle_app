@@ -42,6 +42,9 @@
  */
 @property (weak, nonatomic) AppDelegate *appDelegate;
 
+@property (nonatomic,weak) IBOutlet UILabel *pitch_X_mean;
+@property (nonatomic,weak) IBOutlet UILabel *pitch_X_var;
+
 @property (nonatomic,weak) IBOutlet UILabel *pitchMean;
 @property (nonatomic,weak) IBOutlet UILabel *pitchVariability;
 

@@ -42,9 +42,13 @@
  */
 @property (weak, nonatomic) AppDelegate *appDelegate;
 
-@property (nonatomic,weak) IBOutlet UILabel *rateInSyllables;
-@property (nonatomic,weak) IBOutlet UILabel *rateInWords;
-@property (nonatomic,weak) IBOutlet UILabel *rateVariability;
+@property (nonatomic,weak) IBOutlet UILabel *pace_X_spm;
+@property (nonatomic,weak) IBOutlet UILabel *pace_X_wpm;
+@property (nonatomic,weak) IBOutlet UILabel *pace_X_var;
+
+@property (nonatomic,weak) IBOutlet UILabel *pace_spm;
+@property (nonatomic,weak) IBOutlet UILabel *pace_wpm;
+@property (nonatomic,weak) IBOutlet UILabel *pace_var;
 
 @property (nonatomic,weak) IBOutlet UILabel *chartYaxisUILabel;
 /**

@@ -54,11 +54,25 @@
     td = data;
     td_index = index;
 }
+
 - (void) updateTalkData {
-    self.rateInSyllables.text = [NSString stringWithFormat:@"%.02f",[td.meanRateAsSyllablesPerMinute doubleValue]];
-    self.rateInWords.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsWordsPerMinute doubleValue]];
-    self.rateVariability.text = [NSString stringWithFormat:@"%.02f", [td.varRateAsSyllablesPerMinute doubleValue]];
-    
+    self.pace_spm.text = [NSString stringWithFormat:@"%.02f",[td.meanRateAsSyllablesPerMinute doubleValue]];
+    self.pace_wpm.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsWordsPerMinute doubleValue]];
+    self.pace_var.text = [NSString stringWithFormat:@"%.02f", [td.varRateAsSyllablesPerMinute doubleValue]];
+
+    // update X spm
+    CGRect frame_X_spm = self.pace_X_spm.frame;
+    frame_X_spm.origin.x= (SCREEN_WIDTH-10) / (350-100) * ([td.meanRateAsSyllablesPerMinute doubleValue] - 100);
+    self.pace_X_spm.frame= frame_X_spm;
+    // update X wpm
+    CGRect frame_X_wpm = self.pace_X_wpm.frame;
+    frame_X_wpm.origin.x= (SCREEN_WIDTH-10) / (220-100) * ([td.meanRateAsWordsPerMinute doubleValue] - 100);
+    self.pace_X_wpm.frame= frame_X_wpm;
+    // update X var
+    CGRect frame_X_var = self.pace_X_var.frame;
+    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (40-15) * ([td.varRateAsSyllablesPerMinute doubleValue] - 15);
+    self.pace_X_var.frame= frame_X_var;
+
     [self.tableView reloadData];
     
     // prepare xlabels
@@ -67,7 +81,8 @@
         [histxlabels addObject:@( (i*30) )];
     
     // BarChart: speech rate (syllables per minute)
-    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:CGRectMake(5, 160.0, SCREEN_WIDTH, SCREEN_WIDTH)];
+    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:
+                          CGRectMake(5, 240.0, SCREEN_WIDTH, SCREEN_WIDTH * 0.8)];
     chart.backgroundColor = [UIColor clearColor];
     chart.yLabelFormatter = ^(CGFloat yValue){
         CGFloat yValueParsed = yValue;
@@ -79,7 +94,7 @@
     [chart setXLabels:histxlabels];
     chart.rotateForXAxisText = false ;
     [chart setYValues:td.histRateAsSyllablesPerMinute];
-    [chart setStrokeColor:PNLightGreen];
+    [chart setStrokeColor:PNDeepGreen];
     chart.barBackgroundColor = PNGrey;
     [chart strokeChart];
     chart.delegate = self;
@@ -94,8 +109,8 @@
     alert.colorScheme = [UIColor colorWithRed: 0 green: 0.698 blue: 1 alpha: 1];
     
     [alert showAlertInView:self
-                 withTitle:@"Speech Rate"
-              withSubtitle:@"Average speech rate is calculated in syllables per minute (spm). Longer sentences and more complex speech content means more pauses are necessary.\n\nAverage speech rate of a public speaker is 150 spm - 350 spm. If your speech rate is 200 spm - 270 spm you are fine.\n\nDon’t deliver sentence after sentence at the same exact rate! Varying your speech rate adds life to your vocal delivery, allowing you to convey both meaning and emotional content. 😜👌"
+                 withTitle:@"Pace"
+              withSubtitle:@"Pace is calculated in syllables per minute (spm). Longer sentences and more complex speech content means more pauses are necessary.\n\nAverage pace of a public speaker is 150 spm - 350 spm. If your pace is 200 spm - 270 spm you are fine.\n\nDon’t deliver sentence after sentence at the same exact rate! Varying your pace adds life to your vocal delivery, allowing you to convey both meaning and emotional content. 😜👌"
            withCustomImage:imgMyImage
        withDoneButtonTitle:nil
                 andButtons:nil];

@@ -66,7 +66,7 @@
         [histxlabels addObject:@( i )];
     
     // BarChart: speech rate (syllables per minute)
-    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:CGRectMake(5, 140.0, SCREEN_WIDTH, SCREEN_WIDTH)];
+    PNBarChart * chart = [[PNBarChart alloc] initWithFrame:CGRectMake(5, 140.0, SCREEN_WIDTH, SCREEN_WIDTH*0.8)];
     chart.backgroundColor = [UIColor clearColor];
 //    chart.yLabelFormatter = ^(CGFloat yValue){
 //        CGFloat yValueParsed = yValue;
@@ -78,7 +78,7 @@
     [chart setXLabels:histxlabels];
     chart.rotateForXAxisText = false;
     [chart setYValues:td.histVolume];
-    [chart setStrokeColor:PNLightGreen];
+    [chart setStrokeColor:PNDeepGreen];
     chart.barBackgroundColor = PNGrey;
     [chart strokeChart];
     chart.delegate = self;

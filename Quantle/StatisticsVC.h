@@ -55,6 +55,11 @@
 @property (nonatomic,weak) IBOutlet UILabel *meanPitch;
 @property (nonatomic,weak) IBOutlet UILabel *meanVolume;
 
+@property (nonatomic,weak) IBOutlet UILabel *FRE_X;
+@property (nonatomic,weak) IBOutlet UILabel *FKG_X;
+@property (nonatomic,weak) IBOutlet UILabel *GFI_X;
+@property (nonatomic,weak) IBOutlet UILabel *FGL_X;
+
 @property (nonatomic,weak) IBOutlet UILabel *fleschReadingEase;
 @property (nonatomic,weak) IBOutlet UILabel *fleschKincaidRate;
 @property (nonatomic,weak) IBOutlet UILabel *gunningFogIndex;

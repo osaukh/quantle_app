@@ -55,13 +55,18 @@
     self.pausesDuration.text = [NSString stringWithFormat:@"%.02f", [td.meanPauseDuration doubleValue]];
     self.pausesSentences.text = [NSString stringWithFormat:@"%d", [td.totalSentences intValue]];
     
+    // update X pauses
+    CGRect frame_X = self.pace_X_pauses.frame;
+    frame_X.origin.x= (SCREEN_WIDTH-10) / (0.7-0.3) * ([td.meanPauseDuration doubleValue] - 0.3);
+    self.pace_X_pauses.frame= frame_X;
+    
     [self.tableView reloadData];
     
     NSArray *items = @[[PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[0] + (int)td.classPausesByLength[1] color:PNiOSGreenColor description:@"[0.1s-0.4s]"],
                        [PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[2] + (int)td.classPausesByLength[3] color:PNDeepGreen description:@"[0.4s-0.1s]"],
                        [PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[4] + (int)td.classPausesByLength[5] color:PNBlue description:@">1s"]];
     
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 170.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
+    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 210.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
     pieChart.descriptionTextColor = [UIColor blackColor];
     pieChart.descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:14.0];
     [pieChart strokeChart];
