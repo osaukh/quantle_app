@@ -93,8 +93,8 @@
     alert.colorScheme = [UIColor colorWithRed: 0 green: 0.698 blue: 1 alpha: 1];
     
     [alert showAlertInView:self
-                 withTitle:@"Volume"
-              withSubtitle:@"Be comfortably heard by everyone in the audience: minimize noise distractions; minimize the distance to the audience; raise your volume to reach the person in the back row. \n\n Vary your volume strategically throughout the talk. Just as gestures and body movement create visual interest, varying your volume creates vocal interest! 😜👌"
+                 withTitle:@"Power"
+              withSubtitle:@"Be comfortably heard by everyone in the audience: minimize noise distractions; minimize the distance to the audience; raise your volume to reach the person in the back row. \n\n Vary your volume strategically throughout the talk. Just as gestures and body movement create visual interest, varying your volume creates vocal interest! 😜👌 \n\n Note: Power and power variability estimated by Quantle do NOT indicate how well the audience hears you."
            withCustomImage:imgMyImage
        withDoneButtonTitle:nil
                 andButtons:nil];

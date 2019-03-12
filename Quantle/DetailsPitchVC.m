@@ -102,8 +102,8 @@
     alert.colorScheme = [UIColor colorWithRed: 0 green: 0.698 blue: 1 alpha: 1];
     
     [alert showAlertInView:self
-                 withTitle:@"Pitch & Vocal Variety"
-              withSubtitle:@"Do you find it hard to convey emotions with your voice?\n\nPitch is the rate of vibration of the vocal folds. Typical values:\nMales: 90-180 Hz\nFemales: 150-320 Hz\n\nSpeakers with low pitch sound more convincing. Speakers with low vocal variety sound boring. Learn to vary your pitch while speaking! 😜👌"
+                 withTitle:@"Pitch"
+              withSubtitle:@"Do you find it hard to convey emotions with your voice?\n\nPitch is the rate of vibration of the vocal folds. Typical values:\nMales: 90-180 Hz\nFemales: 150-320 Hz\n\nSpeakers with low pitch sound more convincing, however it's difficult to change your pitch. Luckily, pitch variation rather than its absolute value is important! 😜👌"
            withCustomImage:imgMyImage
        withDoneButtonTitle:nil
                 andButtons:nil];

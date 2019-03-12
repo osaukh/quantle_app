@@ -81,7 +81,7 @@
     alert.colorScheme = [UIColor colorWithRed: 0 green: 0.698 blue: 1 alpha: 1];
     
     [alert showAlertInView:self
-                 withTitle:@"Pauses & Talk Complexity"
+                 withTitle:@"Pauses"
               withSubtitle:@"The more complex the task, the greater is the number of pauses:\nShort: ~0.15 s\nMedium: ~0.50 s\nLong: ~1.50 s\n\nRead speech tends to produce only short and medium pauses, while spontaneous speech shows more frequent use of medium and long pauses. Lengthy pauses are healthy, allow you to take deep breaths, swallow, drink water. It aids your brain by providing more oxygen and gives your audience time to reflect on your words! 😜👌"
            withCustomImage:imgMyImage
        withDoneButtonTitle:nil
