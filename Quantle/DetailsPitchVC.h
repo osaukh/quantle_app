@@ -31,6 +31,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "TalkData.h"
+#import "Utils.h"
 #import "StatisticsDetails.h"
 
 #import "PNChartDelegate.h"

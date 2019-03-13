@@ -59,7 +59,7 @@
 
     // update X word complexity
     CGRect frame_X = self.wrd_cmplx_X.frame;
-    frame_X.origin.x= (SCREEN_WIDTH-10) / (2.0-1.1) * ([td.totalSyllables doubleValue] / [td.totalWords doubleValue] - 1.1);
+    frame_X.origin.x= (SCREEN_WIDTH-10) / (2.0-1.1) * (capcut([td.totalSyllables doubleValue] / [td.totalWords doubleValue],1.1,2.0) - 1.1);
     self.wrd_cmplx_X.frame= frame_X;
 
     [self.tableView reloadData];

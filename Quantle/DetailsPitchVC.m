@@ -60,11 +60,11 @@
     
     // update X pitch mean
     CGRect frame_X_mean = self.pitch_X_mean.frame;
-    frame_X_mean.origin.x= (SCREEN_WIDTH-10) / (300-75) * ([td.meanPitch doubleValue] - 75);
+    frame_X_mean.origin.x= (SCREEN_WIDTH-10) / (300-75) * (capcut([td.meanPitch doubleValue],75,300) - 75);
     self.pitch_X_mean.frame= frame_X_mean;
     // update X pitch var
     CGRect frame_X_var = self.pitch_X_var.frame;
-    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (50-5) * ([td.varPitch doubleValue] - 5);
+    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (50-5) * (capcut([td.varPitch doubleValue],5,50) - 5);
     self.pitch_X_var.frame= frame_X_var;
     
     [self.tableView reloadData];

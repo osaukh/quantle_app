@@ -56,21 +56,21 @@
 }
 
 - (void) updateTalkData {
-    self.pace_spm.text = [NSString stringWithFormat:@"%.02f",[td.meanRateAsSyllablesPerMinute doubleValue]];
+    self.pace_spm.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsSyllablesPerMinute doubleValue]];
     self.pace_wpm.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsWordsPerMinute doubleValue]];
     self.pace_var.text = [NSString stringWithFormat:@"%.02f", [td.varRateAsSyllablesPerMinute doubleValue]];
 
     // update X spm
     CGRect frame_X_spm = self.pace_X_spm.frame;
-    frame_X_spm.origin.x= (SCREEN_WIDTH-10) / (350-100) * ([td.meanRateAsSyllablesPerMinute doubleValue] - 100);
+    frame_X_spm.origin.x= (SCREEN_WIDTH-10) / (350-100) * (capcut([td.meanRateAsSyllablesPerMinute doubleValue],100,350) - 100);
     self.pace_X_spm.frame= frame_X_spm;
     // update X wpm
     CGRect frame_X_wpm = self.pace_X_wpm.frame;
-    frame_X_wpm.origin.x= (SCREEN_WIDTH-10) / (220-100) * ([td.meanRateAsWordsPerMinute doubleValue] - 100);
+    frame_X_wpm.origin.x= (SCREEN_WIDTH-10) / (220-100) * (capcut([td.meanRateAsWordsPerMinute doubleValue],100,220) - 100);
     self.pace_X_wpm.frame= frame_X_wpm;
     // update X var
     CGRect frame_X_var = self.pace_X_var.frame;
-    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (40-15) * ([td.varRateAsSyllablesPerMinute doubleValue] - 15);
+    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (40-15) * (capcut([td.varRateAsSyllablesPerMinute doubleValue],15,40) - 15);
     self.pace_X_var.frame= frame_X_var;
 
     [self.tableView reloadData];

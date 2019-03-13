@@ -57,6 +57,7 @@
     td = data;
     td_index = index;
 }
+
 - (void)updateFromHistory {
     self.speakerName.text = td.speakerName;
     
@@ -86,19 +87,19 @@
     
     // update X FRE
     CGRect frame_X_FRE = self.FRE_X.frame;
-    frame_X_FRE.origin.x= (SCREEN_WIDTH-10) / (100-0) * ([td.fleschReadingEase doubleValue] - 0);
+    frame_X_FRE.origin.x= (SCREEN_WIDTH-10) / (100-0) * (capcut([td.fleschReadingEase doubleValue],0,100) - 0);
     self.FRE_X.frame= frame_X_FRE;
     // update X FKG
     CGRect frame_X_FKG = self.FKG_X.frame;
-    frame_X_FKG.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.fleschKincaidGradeEase doubleValue] - 4);
+    frame_X_FKG.origin.x= (SCREEN_WIDTH-10) / (16-4) * (capcut([td.fleschKincaidGradeEase doubleValue],4,16) - 4);
     self.FKG_X.frame= frame_X_FKG;
     // update X GFI
     CGRect frame_X_GFI = self.GFI_X.frame;
-    frame_X_GFI.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.gunningFogIndex doubleValue] - 4);
+    frame_X_GFI.origin.x= (SCREEN_WIDTH-10) / (16-4) * (capcut([td.gunningFogIndex doubleValue],4,16) - 4);
     self.GFI_X.frame= frame_X_GFI;
     // update X FGL
     CGRect frame_X_FGL = self.FGL_X.frame;
-    frame_X_FGL.origin.x= (SCREEN_WIDTH-10) / (16-4) * ([td.forecastGradeLevel doubleValue] - 4);
+    frame_X_FGL.origin.x= (SCREEN_WIDTH-10) / (16-4) * (capcut([td.forecastGradeLevel doubleValue],4,16) - 4);
     self.FGL_X.frame= frame_X_FGL;
     
     [self.tableView reloadData];

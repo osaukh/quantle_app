@@ -1,12 +1,13 @@
 //
-//  DetailsCountersVC.h
+//  Utils.c
 //  Quantle
 //
-//  Created by Olga Saukh on 5/05/17.
+//  Created by Olga Saukh on 13.03.19.
+//  Copyright © 2019 Olga Saukh. All rights reserved.
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2017 Olga Saukh
+//  Copyright (c) 2019 Olga Saukh
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -27,33 +28,10 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "TalkData.h"
-#import "Utils.h"
-#import "StatisticsDetails.h"
+#include "Utils.h"
 
-#import "PNChartDelegate.h"
-#import "PNChart.h"
-
-@interface DetailsCountersVC : UITableViewController<PNChartDelegate,StatisticsDetails>
-/**
- * Points to the unique appDelegate of the app.
- */
-@property (weak, nonatomic) AppDelegate *appDelegate;
-
-@property (nonatomic,weak) IBOutlet UILabel *wrd_cmplx_X;
-
-@property (nonatomic,weak) IBOutlet UILabel *wordsTotal;
-@property (nonatomic,weak) IBOutlet UILabel *syllablesTotal;
-@property (nonatomic,weak) IBOutlet UILabel *syllablesPerWord;
-
-/**
- * Set talk data to be shown.
- */
-- (void)initData:(int)index talk:(TalkData *) data;
-
--(IBAction)showInfo:(id)sender;
-
-@end
+double capcut(double value, double from, double to) {
+    value = value < from ? from : value;
+    value = value > to ? to : value;
+    return value;
+}
