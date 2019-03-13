@@ -57,7 +57,7 @@
     
     // update X pauses
     CGRect frame_X = self.pace_X_pauses.frame;
-    frame_X.origin.x= (SCREEN_WIDTH-10) / (0.7-0.3) * (capcut([td.meanPauseDuration doubleValue],0.3,0.7) - 0.3);
+    frame_X.origin.x= (SCREEN_WIDTH-10) / (0.7-0.3) * (fit_to_interval([td.meanPauseDuration doubleValue],0.3,0.7) - 0.3);
     self.pace_X_pauses.frame= frame_X;
     
     [self.tableView reloadData];

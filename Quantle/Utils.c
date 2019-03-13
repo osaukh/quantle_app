@@ -30,7 +30,7 @@
 
 #include "Utils.h"
 
-double capcut(double value, double from, double to) {
+double fit_to_interval(double value, double from, double to) {
     value = value < from ? from : value;
     value = value > to ? to : value;
     return value;

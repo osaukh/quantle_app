@@ -35,7 +35,7 @@
 extern "C" {
 #endif
 
-    double capcut(double value, double from, double to);
+    double fit_to_interval(double value, double from, double to);
 
 #ifdef __cplusplus
 }

@@ -40,6 +40,7 @@ extern "C" {
     
 #include "ExtremaVector.h"
 #include "TargetConditionals.h"
+#include "Utils.h"
     
 #define HIST_MAX_VALUES             20
 #define MIN_EXTREMA_X_DIFF          512

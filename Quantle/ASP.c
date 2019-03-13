@@ -302,19 +302,13 @@ void ASP_process_minimum(int index, float value) {
 }
 
 
-float fit_to_interval(float value, float from, float to) {
-    value = value < from ? from : value;
-    value = value > to ? to : value;
-    return value;
-}
-
 void ASP_compute_comprehension_scores() {
     // Flesch Reading Ease
     counters.flesch_reading_ease = 0;
     if (counters.num_words && counters.num_sentences) {
         counters.flesch_reading_ease = 206.835 - 1.015 * ((float) counters.num_words)/counters.num_sentences -
             84.6 * ((float) counters.num_syllables)/counters.num_words;
-        counters.flesch_reading_ease = fit_to_interval(counters.flesch_reading_ease, 0, 100);
+        counters.flesch_reading_ease = (float) fit_to_interval(counters.flesch_reading_ease, 0, 100);
     }
 
     // Flesch-Kincaid Grade Ease
@@ -322,7 +316,7 @@ void ASP_compute_comprehension_scores() {
     if (counters.num_sentences && counters.num_words) {
         counters.flesch_kincaid_grade_ease = 0.39 * ((float) counters.num_words)/counters.num_sentences +
             11.8 * ((float) counters.num_syllables)/counters.num_words - 15.59;
-        counters.flesch_kincaid_grade_ease = fit_to_interval(counters.flesch_kincaid_grade_ease, 0, 20);
+        counters.flesch_kincaid_grade_ease = (float) fit_to_interval(counters.flesch_kincaid_grade_ease, 0, 20);
     }
 
     // Gunning Fog Index
@@ -331,14 +325,14 @@ void ASP_compute_comprehension_scores() {
     if (counters.num_sentences && counters.num_words) {
         counters.gunning_fog_index = 0.4 * ( ((float) counters.num_words)/counters.num_sentences +
                                             ((float) num_hard_words)/counters.num_words );
-        counters.gunning_fog_index = fit_to_interval(counters.gunning_fog_index, 0, 20);
+        counters.gunning_fog_index = (float) fit_to_interval(counters.gunning_fog_index, 0, 20);
     }
 
     // Forecast Grade Level
     counters.forecast_grade_level = 0;
     if (counters.num_words) {
         counters.forecast_grade_level = 20 - 15 * ((float) counters.words_by_syllables[0])/counters.num_words;
-        counters.forecast_grade_level = fit_to_interval(counters.forecast_grade_level, 0, 20);
+        counters.forecast_grade_level = (float) fit_to_interval(counters.forecast_grade_level, 0, 20);
     }
 }
 

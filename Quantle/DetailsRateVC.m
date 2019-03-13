@@ -62,15 +62,15 @@
 
     // update X spm
     CGRect frame_X_spm = self.pace_X_spm.frame;
-    frame_X_spm.origin.x= (SCREEN_WIDTH-10) / (350-100) * (capcut([td.meanRateAsSyllablesPerMinute doubleValue],100,350) - 100);
+    frame_X_spm.origin.x= (SCREEN_WIDTH-10) / (350-100) * (fit_to_interval([td.meanRateAsSyllablesPerMinute doubleValue],100,350) - 100);
     self.pace_X_spm.frame= frame_X_spm;
     // update X wpm
     CGRect frame_X_wpm = self.pace_X_wpm.frame;
-    frame_X_wpm.origin.x= (SCREEN_WIDTH-10) / (220-100) * (capcut([td.meanRateAsWordsPerMinute doubleValue],100,220) - 100);
+    frame_X_wpm.origin.x= (SCREEN_WIDTH-10) / (220-100) * (fit_to_interval([td.meanRateAsWordsPerMinute doubleValue],100,220) - 100);
     self.pace_X_wpm.frame= frame_X_wpm;
     // update X var
     CGRect frame_X_var = self.pace_X_var.frame;
-    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (40-15) * (capcut([td.varRateAsSyllablesPerMinute doubleValue],15,40) - 15);
+    frame_X_var.origin.x= (SCREEN_WIDTH-10) / (40-15) * (fit_to_interval([td.varRateAsSyllablesPerMinute doubleValue],15,40) - 15);
     self.pace_X_var.frame= frame_X_var;
 
     [self.tableView reloadData];
