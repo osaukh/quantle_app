@@ -166,13 +166,12 @@ void zeroFields () {
         sum_rate += (counters.rate_histogram[i] * (i * 30));
         num_rate += counters.rate_histogram [i];
     }
-    td.meanRateAsSyllablesPerMinute = (num_rate > 0) ? @( ((float) sum_rate) / num_rate ) : @(0);
     
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
         rmse += ( powf(i-td.meanRateAsSyllablesPerMinute.floatValue/30,2) * 900 ) * counters.rate_histogram[i];
-    td.varRateAsSyllablesPerMinute = (num_rate > 0) ? @( sqrtf(rmse / num_rate) / [td.meanRateAsSyllablesPerMinute floatValue] * 100) : @(0);
+    td.varRateAsSyllablesPerMinute = (num_rate > 0 && td.meanRateAsSyllablesPerMinute > 0) ? @( sqrtf(rmse / num_rate) / [td.meanRateAsSyllablesPerMinute floatValue] * 100) : @(0);
 }
 
 +(void) setVolumeData {
