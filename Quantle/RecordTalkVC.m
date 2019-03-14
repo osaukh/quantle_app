@@ -108,8 +108,8 @@
         }
 
         // initialize TalkData defaults and reset date / time if needed
-        td = [OngoingTalk getInstance];
-        if (td.talkLength == 0)
+        self->td = [OngoingTalk getInstance];
+        if (self->td.talkLength == 0)
             [OngoingTalk resetTime];
         ASP_soft_reset_counters();
     }
@@ -210,10 +210,10 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.audioPlot clear];
         [self.audioPlot updateBuffer:NULL withBufferSize:0];
-    });
     
-    // Reset counters
-    [self zeroUI];
+        // Reset counters
+        [self zeroUI];
+    });
     
     // Save to history message
     UIImage* imgMyImage = [UIImage imageNamed:@"yestick32x32.png"];
@@ -232,14 +232,21 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 }
 
 -(IBAction)clearAndRestart:(id)sender {
+    [[EZMicrophone sharedMicrophone] stopFetchingAudio];
+    self.microphoneTextLabel.text = @"OFF";
+    [self.microphoneSwitch setOn:NO animated:YES];
+    
+    if (self.appDelegate.debugMode)
+        [self.recorder closeAudioFile];
+
     // Clear plot
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.audioPlot clear];
         [self.audioPlot updateBuffer:NULL withBufferSize:0];
+        
+        // Reset counters
+        [self zeroUI];
     });
-    
-    // Reset counters
-    [self zeroUI];
 }
 
 /**
