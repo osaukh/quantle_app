@@ -137,13 +137,13 @@
     hasBufferList:(AudioBufferList *)bufferList
    withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
-
+    
+    // if debug write the original to a .wav file
+    if( self.appDelegate.debugMode )
+        [self.recorder appendDataFromBufferList:bufferList withBufferSize:bufferSize];
+    
     // do processing in the background thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        // if debug write the original to a .wav file
-        if( self.appDelegate.debugMode )
-            [self.recorder appendDataFromBufferList:bufferList withBufferSize:bufferSize];
-
         // processing
         ASP_process_buffer(bufferList->mBuffers[0].mData, bufferSize);
         
