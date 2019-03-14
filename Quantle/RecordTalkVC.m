@@ -87,6 +87,13 @@
     [self updateUI];
     ASP_hard_reset_counters();
     
+    // set all indicators as OK
+    self.rateCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.rateVarCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.pitchCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.pitchVarCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.volumeCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    
     // setup timer for view update
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 }
@@ -147,16 +154,17 @@ withNumberOfChannels:(UInt32)numberOfChannels {
         // processing
         ASP_process_buffer(bufferList->mBuffers[0].mData, bufferSize);
         
+        // update plot
+        [self.audioPlot updateBuffer:bufferList->mBuffers[0].mData withBufferSize:bufferSize];
+        
         // update basic counters
         self->td.talkLength = @( counters.talk_duration );
         if (counters.talk_duration)
             self->td.meanRateAsSyllablesPerMinute = @(counters.num_syllables / counters.talk_duration);
+        [OngoingTalk setRateData];
         [OngoingTalk setPitchData];
         [OngoingTalk setVolumeData];
-        
-        // update plot
-        [self.audioPlot updateBuffer:bufferList->mBuffers[0].mData withBufferSize:bufferSize];
-        
+            
         // update counters in UI
         [self updateUI];
     });
@@ -258,7 +266,9 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 
     self.lengthLabel.text = @("0:00:00");
     self.rateLabel.text = @("0.00");
+    self.rateVarLabel.text = @("0.00");
     self.pitchLabel.text = @("0.00");
+    self.pitchVarLabel.text = @("0.00");
     self.volumeLabel.text = @("0.00");
     
     // reset picture
@@ -266,7 +276,28 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     [self.speakerPictureButton sizeToFit];
     
     [self updateUI];
+    
+    // set all indicators as OK
+    self.rateCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.rateVarCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.pitchCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.pitchVarCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    self.volumeCell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+
     NSLog(@"Counters reset.");
+}
+
+- (void) setArrowInfo:(UITableViewCell *)cell value:(double)value lowRed:(double)lr lowYellow:(double)ly upperYellow:(double)uy upperRed:(double)ur {
+    if (value >= ly && value <= uy)
+        cell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"checkmark"]];
+    if (value >= lr && value < ly)
+        cell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"arrow_up_yellow"]];
+    if (value < lr)
+        cell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"arrow_up_red"]];
+    if (value > uy && value <= ur)
+        cell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"arrow_down_yellow"]];
+    if (value > ur)
+        cell.accessoryView = [[ UIImageView alloc ] initWithImage:[UIImage imageNamed:@"arrow_down_red"]];
 }
 
 - (void)updateUI {
@@ -277,8 +308,21 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     
     self.lengthLabel.text = [NSString stringWithFormat:@"%u:%02u:%02u", h, m, s];
     self.rateLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsSyllablesPerMinute doubleValue]];
+    self.rateVarLabel.text = [NSString stringWithFormat:@"%.02f", [td.varRateAsSyllablesPerMinute doubleValue]];
     self.pitchLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanPitch doubleValue]];
+    self.pitchVarLabel.text = [NSString stringWithFormat:@"%.02f", [td.varPitch doubleValue]];
     self.volumeLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanVolume doubleValue]];
+    
+    [self setArrowInfo:self.rateCell value:td.meanRateAsSyllablesPerMinute.doubleValue
+                lowRed:150 lowYellow:230 upperYellow:270 upperRed:300];
+    [self setArrowInfo:self.rateVarCell value:td.varRateAsSyllablesPerMinute.doubleValue
+                lowRed:0 lowYellow:20 upperYellow:100 upperRed:100];
+    [self setArrowInfo:self.pitchCell value:td.meanPitch.doubleValue
+                lowRed:0 lowYellow:0 upperYellow:500 upperRed:500];
+    [self setArrowInfo:self.pitchVarCell value:td.varPitch.doubleValue
+                lowRed:10 lowYellow:15 upperYellow:100 upperRed:100];
+    [self setArrowInfo:self.volumeCell value:td.meanVolume.doubleValue
+                lowRed:0 lowYellow:1 upperYellow:20 upperRed:20];
 }
 
 -(void)updateTimer {

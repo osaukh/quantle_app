@@ -189,5 +189,4 @@ void zeroFields () {
     td.varVolume = (num_volume > 0) ? @( sqrtf(rmse / num_volume) / [td.meanVolume floatValue] * 100 ) : @(0);
 }
 
-
 @end

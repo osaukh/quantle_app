@@ -57,11 +57,24 @@
 
 @property (nonatomic,weak) IBOutlet UILabel *lengthLabel;
 @property (nonatomic,weak) IBOutlet UILabel *rateLabel;
+@property (nonatomic,weak) IBOutlet UILabel *rateVarLabel;
 @property (nonatomic,weak) IBOutlet UILabel *pitchLabel;
+@property (nonatomic,weak) IBOutlet UILabel *pitchVarLabel;
 @property (nonatomic,weak) IBOutlet UILabel *volumeLabel;
 
+@property (nonatomic,weak) IBOutlet UITableViewCell *rateCell;
+@property (nonatomic,weak) IBOutlet UITableViewCell *rateVarCell;
+@property (nonatomic,weak) IBOutlet UITableViewCell *pitchCell;
+@property (nonatomic,weak) IBOutlet UITableViewCell *pitchVarCell;
+@property (nonatomic,weak) IBOutlet UITableViewCell *volumeCell;
+
 /**
- Toggles the microphone on and off. When the microphone is on it will send its delegate (aka this view controller) the audio data in various ways (check out the EZMicrophoneDelegate documentation for more details);
+ Sets real-time performance indication arrows.
+ */
+-(void) setArrowInfo:(UITableViewCell *)cell value:(double)value lowRed:(double)lr lowYellow:(double)ly upperYellow:(double)uy upperRed:(double)ur;
+
+/**
+ Toggles the microphone on and off. When the microphone is on it will send its delegate (aka this view controller) the audio data in various ways (check out the EZMicrophoneDelegate documentation for more details).
  */
 -(IBAction)toggleMicrophone:(id)sender;
 
