@@ -78,6 +78,9 @@
 // Variability volume.
 @property (nonatomic, strong) NSNumber *varVolume;
 
+// Data sharing.
+@property (nonatomic, strong) NSNumber *isShared;
+
 /**
  * Plots
  */

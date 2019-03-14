@@ -62,6 +62,8 @@
  */
 @property BOOL debugMode;
 
+@property uint32_t appRandom;
+
 /**
  * Core data funtionality.
  * Object of the core data context.

@@ -67,6 +67,8 @@
     [encoder encodeObject:self.fleschKincaidGradeEase forKey:@"fleschKincaidGradeEase"];
     [encoder encodeObject:self.gunningFogIndex forKey:@"gunningFogIndex"];
     [encoder encodeObject:self.forecastGradeLevel forKey:@"forecastGradeLevel"];
+    
+    [encoder encodeObject:self.isShared forKey:@"isShared"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -108,6 +110,8 @@
     self.fleschKincaidGradeEase = [decoder decodeObjectForKey:@"fleschKincaidGradeEase"];
     self.gunningFogIndex = [decoder decodeObjectForKey:@"gunningFogIndex"];
     self.forecastGradeLevel = [decoder decodeObjectForKey:@"forecastGradeLevel"];
+    
+    self.isShared = [decoder decodeObjectForKey:@"isShared"];
     return self;
 }
 
@@ -144,6 +148,8 @@
     destination.fleschKincaidGradeEase = [origin.fleschKincaidGradeEase copy];
     destination.gunningFogIndex = [origin.gunningFogIndex copy];
     destination.forecastGradeLevel = [origin.forecastGradeLevel copy];
+    
+    destination.isShared = [origin.isShared copy];
 }
 
 @end

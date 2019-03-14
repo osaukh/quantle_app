@@ -75,6 +75,8 @@ void zeroFields () {
     td.fleschKincaidGradeEase = 0;
     td.gunningFogIndex = 0;
     td.forecastGradeLevel = 0;
+    
+    td.isShared = 0;
 }
 
 + (TalkData*)resetInstance {

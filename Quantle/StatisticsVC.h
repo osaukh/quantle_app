@@ -66,12 +66,20 @@
 @property (nonatomic,weak) IBOutlet UILabel *gunningFogIndex;
 @property (nonatomic,weak) IBOutlet UILabel *forecastGradeLevel;
 
+@property (nonatomic,weak) IBOutlet UIButton *shareBtn;
+
 /**
  * Set talk data to be shown.
  */
 - (void)initData:(int)index talk:(TalkData *) data;
 
 -(void)updateFromHistory;
+
+/**
+ * Sharing is caring: We ask you for your consent to share the data on the talk basis.
+ * The data is automatically submitted to Google Forms.
+ */
+-(IBAction)shareData:(id)sender;
 
 -(IBAction)deleteFromHistory:(id)sender;
 

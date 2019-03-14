@@ -102,7 +102,71 @@
     frame_X_FGL.origin.x= (SCREEN_WIDTH-10) / (16-4) * (fit_to_interval([td.forecastGradeLevel doubleValue],4,16) - 4);
     self.FGL_X.frame= frame_X_FGL;
     
+    if (td.isShared.intValue == 1) {
+        [self.shareBtn setTitle:@"Shared!" forState:UIControlStateNormal];
+        self.shareBtn.enabled = NO;
+    }
+    
     [self.tableView reloadData];
+}
+
+-(IBAction)shareData:(id)sender {
+    NSLog(@"shareData");
+    
+    FCAlertView *alert = [[FCAlertView alloc] init];
+    alert.colorScheme = [UIColor colorWithRed: 0 green: 0.698 blue: 1 alpha: 1];
+    
+    [alert showAlertInView:self withTitle:@"Share Talk Statistics" withSubtitle:@"You have an opportunity to contribute to our research by sharing computed talk evaluation scores with us (NOT raw data). By doing so you support research on the topic and future Quantle updates. 👌 \n\n Should the data be shared?" withCustomImage:[UIImage imageNamed:@"gear24x24.png"] withDoneButtonTitle:@"No" andButtons:nil];
+
+    [alert addButton:@"OK" withActionBlock:^{
+        NSLog(@"Submit to Google Forms");
+        
+        // construct query string
+        NSString *query = [NSString stringWithFormat:@"https://docs.google.com/forms/d/1vMS1BhvSEgzwixmhM-Vj7aM75EjQ5ZjKPaKtYTju4bA/formResponse?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&submit=Submit",
+                           [NSString stringWithFormat:@"entry.2131521282=%@",
+                                [self->td.speakerName stringByReplacingOccurrencesOfString:@" " withString:@""]],    // speaker
+                           [NSString stringWithFormat:@"entry.993513618=%@",
+                                [self->td.eventName stringByReplacingOccurrencesOfString:@" " withString:@""]],       // event
+                           [NSString stringWithFormat:@"entry.614766564=%f", self->td.date.timeIntervalSince1970],    // date and time
+                           [NSString stringWithFormat:@"entry.1251310572=%@", self->td.talkLength],     // talk length
+                           [NSString stringWithFormat:@"entry.705245733=%@", self->td.totalSyllables],  // #syllables
+                           [NSString stringWithFormat:@"entry.511255467=%@", self->td.totalWords],      // #words
+                           
+                           [NSString stringWithFormat:@"entry.756835055=%@", self->td.meanRateAsSyllablesPerMinute],    // spm
+                           [NSString stringWithFormat:@"entry.1492939280=%@", self->td.meanRateAsWordsPerMinute],       // wpm
+                           [NSString stringWithFormat:@"entry.905191868=%@", self->td.varRateAsSyllablesPerMinute],     // pace_VAR
+                           [NSString stringWithFormat:@"entry.520354071=%@", self->td.meanPauseDuration],   // pause_duration
+                           [NSString stringWithFormat:@"entry.707093598=%@", self->td.totalSentences],      // #clauses
+                           [NSString stringWithFormat:@"entry.249044805=%@", self->td.meanPitch],           // pitch_mean
+                           [NSString stringWithFormat:@"entry.1029014039=%@", self->td.varPitch],           // pitch_VAR
+                           [NSString stringWithFormat:@"entry.1812954730=%@", self->td.meanVolume],         // power_mean
+                           [NSString stringWithFormat:@"entry.839827760=%@", self->td.varVolume],           // power_VAR
+                           
+                           [NSString stringWithFormat:@"entry.891320039=%@", self->td.fleschReadingEase],       // FRE
+                           [NSString stringWithFormat:@"entry.1148113942=%@", self->td.fleschKincaidGradeEase], // FKG
+                           [NSString stringWithFormat:@"entry.1556492853=%@", self->td.gunningFogIndex],        // GFI
+                           [NSString stringWithFormat:@"entry.1978477833=%@", self->td.forecastGradeLevel],     // FGL
+                           
+                           [NSString stringWithFormat:@"entry.1315462333=%u", self.appDelegate.appRandom]      // Application specific unique ID
+                           ];
+        
+        UIApplication *application = [UIApplication sharedApplication];
+        NSURL *URL = [NSURL URLWithString:query];
+        
+        if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+            [application openURL:URL options:@{}
+               completionHandler:^(BOOL success) {
+                   NSLog(@"Open %@: %d",query,success);
+                   [self.shareBtn setTitle:@"Shared!" forState:UIControlStateNormal];
+                   self.shareBtn.enabled = NO;
+                   self->td.isShared = [NSNumber numberWithInt:1];
+               }];
+        }
+    }];
+    
+    [alert doneActionBlock:^{
+        NSLog(@"Cancel sharing");
+    }];
 }
 
 -(IBAction)deleteFromHistory:(id)sender {

@@ -68,6 +68,9 @@
     
     // Create empty history list
     self.historyEntries = [NSMutableArray arrayWithCapacity:[self.histSize integerValue]];
+    
+    // Initialize app instance unique number
+    self.appRandom = 12345;
 
     // If first run, show a message to user and set the standard data base
     if ([defaults boolForKey:@"firstRun"]) {
@@ -87,6 +90,9 @@
         }
         
         [self addSkipBackupAttributeToItemAtURL:storeURL];
+        
+        // Generate app instance unique number
+        self.appRandom = arc4random();
     } else {
         self.firstRun = FALSE;
     }
@@ -124,7 +130,7 @@
     
     // don't turn off screen
     [UIApplication sharedApplication].idleTimerDisabled = YES;
-        
+    
     return YES;
 }
 
