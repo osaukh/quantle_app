@@ -73,7 +73,12 @@
     [self.speakerPicture.layer setMasksToBounds:YES];
     [self.speakerPicture setImage:[UIImage imageWithData:td.speakerPicture]];
     
-    self.length.text = [NSString stringWithFormat:@"%.02f min", [td.talkLength doubleValue]];
+    int lengthInSeconds = (int) (60 * [td.talkLength doubleValue]);
+    NSUInteger h = lengthInSeconds / 3600;
+    NSUInteger m = (lengthInSeconds / 60) % 60;
+    NSUInteger s = lengthInSeconds % 60;
+    
+    self.length.text = [NSString stringWithFormat:@"%u:%02u:%02u", h, m, s];
     self.words.text = [NSString stringWithFormat:@"%li words", (long)[td.totalWords integerValue]];
     self.meanRate.text = [NSString stringWithFormat:@"%.02f spm", [td.meanRateAsSyllablesPerMinute doubleValue]];
     self.pauses.text = [NSString stringWithFormat:@"%.02f s", [td.meanPauseDuration doubleValue]];
@@ -121,7 +126,7 @@
     [alert addButton:@"OK" withActionBlock:^{
         NSLog(@"Submit to Google Forms");
         
-        // construct query string
+        // construct Google Forms submission string
         NSString *query = [NSString stringWithFormat:@"https://docs.google.com/forms/d/1vMS1BhvSEgzwixmhM-Vj7aM75EjQ5ZjKPaKtYTju4bA/formResponse?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&submit=Submit",
                            [NSString stringWithFormat:@"entry.2131521282=%@",
                                 [self->td.speakerName stringByReplacingOccurrencesOfString:@" " withString:@""]],    // speaker

@@ -249,7 +249,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     ASP_hard_reset_counters();
     [OngoingTalk resetInstance];
 
-    self.lengthLabel.text = @("0.00");
+    self.lengthLabel.text = @("0:00:00");
     self.rateLabel.text = @("0.00");
     self.pitchLabel.text = @("0.00");
     self.volumeLabel.text = @("0.00");
@@ -263,7 +263,12 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 }
 
 - (void)updateUI {
-    self.lengthLabel.text = [NSString stringWithFormat:@"%.02f", [td.talkLength doubleValue]];
+    int lengthInSeconds = (int) (60 * [td.talkLength doubleValue]);
+    NSUInteger h = lengthInSeconds / 3600;
+    NSUInteger m = (lengthInSeconds / 60) % 60;
+    NSUInteger s = lengthInSeconds % 60;
+    
+    self.lengthLabel.text = [NSString stringWithFormat:@"%u:%02u:%02u", h, m, s];
     self.rateLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanRateAsSyllablesPerMinute doubleValue]];
     self.pitchLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanPitch doubleValue]];
     self.volumeLabel.text = [NSString stringWithFormat:@"%.02f", [td.meanVolume doubleValue]];
