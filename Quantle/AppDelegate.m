@@ -56,6 +56,7 @@
                                           [NSNumber numberWithInt:DEFAULT_HIST_SIZE], @"histSize",
                                           [NSNumber numberWithBool:DEFAULT_SWITCH], @"firstRun",
                                           [NSNumber numberWithBool:DEFAULT_DEBUGMODE], @"debugMode",
+                                          [NSNumber numberWithInt:DEFAULT_APP_RANDOM], @"appRandom",
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     
@@ -69,12 +70,15 @@
     // Create empty history list
     self.historyEntries = [NSMutableArray arrayWithCapacity:[self.histSize integerValue]];
     
-    // Initialize app instance unique number
-    self.appRandom = 12345;
-
+    // Load app random
+    self.appRandom = (uint32_t) [defaults integerForKey:@"appRandom"];
+    
     // If first run, show a message to user and set the standard data base
     if ([defaults boolForKey:@"firstRun"]) {
         NSLog(@"firstRun");
+        // Generate app instance unique number
+        self.appRandom = arc4random();
+        [defaults setInteger:self.appRandom forKey:@"appRandom"];
         [defaults setBool:FALSE forKey:@"firstRun"];
         [defaults synchronize];
         
@@ -90,9 +94,6 @@
         }
         
         [self addSkipBackupAttributeToItemAtURL:storeURL];
-        
-        // Generate app instance unique number
-        self.appRandom = arc4random();
     } else {
         self.firstRun = FALSE;
     }
@@ -169,6 +170,11 @@
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:t];
         [dataRecord setValue:data forKey:@"talk"];
     }
+
+//    // Store appRandom
+//    NSManagedObject *dataRecord = [NSEntityDescription insertNewObjectForEntityForName:@"AppRandom" inManagedObjectContext:context];
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.appRandom]];
+//    [dataRecord setValue:data forKey:@"AppRandom"];
     
     NSError *error;
     if (![context save:&error]) {

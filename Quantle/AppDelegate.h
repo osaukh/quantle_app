@@ -33,7 +33,7 @@
 #define DEFAULT_HIST_SIZE 20
 #define DEFAULT_SWITCH TRUE
 #define DEFAULT_DEBUGMODE FALSE
-
+#define DEFAULT_APP_RANDOM 12345
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
