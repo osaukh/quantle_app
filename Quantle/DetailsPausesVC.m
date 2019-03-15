@@ -62,9 +62,12 @@
     
     [self.tableView reloadData];
     
-    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[0] + (int)td.classPausesByLength[1] color:PNiOSGreenColor description:@"[0.1s-0.4s]"],
-                       [PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[2] + (int)td.classPausesByLength[3] color:PNDeepGreen description:@"[0.4s-0.1s]"],
-                       [PNPieChartDataItem dataItemWithValue:(int)td.classPausesByLength[4] + (int)td.classPausesByLength[5] color:PNBlue description:@">1s"]];
+    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:
+                        [[td.classPausesByLength objectAtIndex:0] intValue] + [[td.classPausesByLength objectAtIndex:1] intValue] color:PNiOSGreenColor description:@"[0.1s-0.4s]"],
+                       [PNPieChartDataItem dataItemWithValue:
+                        [[td.classPausesByLength objectAtIndex:2] intValue] + [[td.classPausesByLength objectAtIndex:3] intValue] color:PNDeepGreen description:@"[0.4s-0.1s]"],
+                       [PNPieChartDataItem dataItemWithValue:
+                        [[td.classPausesByLength objectAtIndex:4] intValue] + [[td.classPausesByLength objectAtIndex:5] intValue] color:PNBlue description:@">1s"]];
     
     PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 210.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
     pieChart.descriptionTextColor = [UIColor blackColor];

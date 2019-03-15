@@ -63,11 +63,11 @@
     self.wrd_cmplx_X.frame= frame_X;
 
     [self.tableView reloadData];
-    
-    NSArray *items = @[[PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[0] color:PNiOSGreenColor description:@"one"],
-                       [PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[1] color:PNLightGreen description:@"two"],
-                       [PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[2] color:PNDeepGreen description:@"three"],
-                       [PNPieChartDataItem dataItemWithValue: (int)td.classWordsBySyllables[3] color:PNBrown description:@"four+"],
+        
+    NSArray *items = @[[PNPieChartDataItem dataItemWithValue: [[td.classWordsBySyllables objectAtIndex:0] intValue] color:PNiOSGreenColor description:@"one"],
+                       [PNPieChartDataItem dataItemWithValue: [[td.classWordsBySyllables objectAtIndex:1] intValue] color:PNLightGreen description:@"two"],
+                       [PNPieChartDataItem dataItemWithValue: [[td.classWordsBySyllables objectAtIndex:2] intValue] color:PNDeepGreen description:@"three"],
+                       [PNPieChartDataItem dataItemWithValue: [[td.classWordsBySyllables objectAtIndex:3] intValue] color:PNBrown description:@"four+"],
                        ];
     
     PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(0.1*SCREEN_WIDTH, 230.0, 0.8*SCREEN_WIDTH, 0.8*SCREEN_WIDTH) items:items];
