@@ -113,4 +113,12 @@
  */
 - (IBAction)runPrintHistoryData:(id)sender;
 
+
+/**
+ * For test purposes only. Hide these in the final release.
+ */
+@property (weak, nonatomic) IBOutlet UITableViewCell *runFile;
+@property (weak, nonatomic) IBOutlet UITableViewCell *runBatch;
+@property (weak, nonatomic) IBOutlet UITableViewCell *runHistory;
+
 @end

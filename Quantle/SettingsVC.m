@@ -63,8 +63,14 @@
     self.histSizeTextField.text = [self.appDelegate.histSize stringValue];
     // Set numerical keyboard for hist size text field
     [self.histSizeTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    
     // Set debug switch
     [self.debugModeSwitch setOn:self.appDelegate.debugMode];
+    
+    // HIDING TEST FIELDS FOR RELEASE
+    self.runFile.hidden = YES;
+    self.runBatch.hidden = YES;
+    self.runHistory.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
