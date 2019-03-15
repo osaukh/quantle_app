@@ -42,11 +42,11 @@ int lmin_index = 0, lmax_index = 0, p0_index = 0, p1_index = 0, p2_index = 0;
 float ste, maxste = 0, MIN_EXTREMA_Y_DIFF = 0;
 //float ste_window[STE_WINDOW_SIZE];
 
-// needed for pitch computation. We use real-time time-domain pitch tracking using wavelets to compute the pitch
-// source: http://www.schmittmachine.com/dywapitchtrack.html
+// Pitch computation. We use real-time time-domain pitch tracking using wavelets
+// Source: http://www.schmittmachine.com/dywapitchtrack.html
 dywapitchtracker dywpt;
 
-// local variables needed for sound normalization. We use adapt volume at runtime.
+// local variables needed for sound normalization. We adapt volume at runtime.
 int buffercounter = 0;
 
 // long-term maxima: 4 x 5s
@@ -75,15 +75,15 @@ void ASP_hard_reset_counters() {
     counters.num_syllables = 0;
     counters.num_words = 0;
     counters.num_pauses = 0;
-    counters.num_sentences = 0;
+    counters.num_clauses = 0;
     
     counters.sum_pause_duration = 0;
     
-    bzero(&counters.rate_histogram, 20*sizeof(int));
+    bzero(&counters.pace_histogram, 20*sizeof(int));
     bzero(&counters.words_by_syllables, 4*sizeof(int));
     bzero(&counters.pauses_by_length, 6*sizeof(int));
     bzero(&counters.pitch_histogram, 20*sizeof(int));
-    bzero(&counters.volume_histogram, 20*sizeof(int));
+    bzero(&counters.power_histogram, 20*sizeof(int));
     
     ASP_soft_reset_counters();
 }
@@ -146,7 +146,7 @@ void ASP_syllable_estimation(void *buffer, unsigned int len) {
             if ((p1_index > MIN_EXTREMA_X_DIFF || p0_elem < 0) && p2_index-p1_index > MIN_EXTREMA_X_DIFF) {
 
 #ifdef DEBUG_OUTPUT
-                printf("RateS,%d,%f\n", buffercounter,p1_elem); fflush(stdout);  // local max found: (p1_index, p1_elem)
+                printf("SyllableNucleiMax,%d,%f\n", buffercounter,p1_elem); fflush(stdout);  // local max found: (p1_index, p1_elem)
 #endif
                 ASP_process_maximum(p1_index, p1_elem);
                     
@@ -162,7 +162,7 @@ void ASP_syllable_estimation(void *buffer, unsigned int len) {
             if ((p1_index > MIN_EXTREMA_X_DIFF || p0_elem < 0) && p2_index-p1_index > MIN_EXTREMA_X_DIFF) {
                 
 #ifdef DEBUG_OUTPUT
-                printf("RateF,%d,%f\n", buffercounter,p1_elem); fflush(stdout); // local min found: (p1_index, p1_elem)
+                printf("SyllableNucleiMin,%d,%f\n", buffercounter,p1_elem); fflush(stdout); // local min found: (p1_index, p1_elem)
 #endif
                 ASP_process_minimum(p1_index, p1_elem);
                     
@@ -174,7 +174,7 @@ void ASP_syllable_estimation(void *buffer, unsigned int len) {
     }
     
     if (ste > MIN_EXTREMA_Y_DIFF)
-        ASP_volume_estimation(ste);
+        ASP_power_estimation(ste);
     
     // update 5sec maximum
     maxste = (ste > maxste) ? ste : maxste;
@@ -236,14 +236,14 @@ void ASP_pitch_estimation(void *buffer, unsigned int len) {
     pitchindex++;
 }
 
-void ASP_volume_estimation(float value) {
+void ASP_power_estimation(float value) {
     float volume = 10*log10f(1+value);
 #ifdef DEBUG_OUTPUT
     printf("Volume,%d,%f\n", buffercounter,volume); fflush(stdout);
 #endif
     volume = (volume < 19) ? volume : 19;
     int idx = volume;
-    counters.volume_histogram[idx]++;
+    counters.power_histogram[idx]++;
 }
 
 int wordpart = 0;
@@ -259,7 +259,7 @@ void ASP_process_maximum(int index, float value) {
     if (buffercounter - spm_time_last_10sec >= buffers_in_10sec) {
         float rate = spm_syllables_last_10sec * 6; // #syllables / 10 sec * 60 sec in one minute
         if (rate < 599 && rate > 0)
-            counters.rate_histogram[(int) rate/30]++;
+            counters.pace_histogram[(int) rate/30]++;
         spm_syllables_last_10sec = 0;
         spm_time_last_10sec = buffercounter;
     }
@@ -288,13 +288,13 @@ void ASP_process_minimum(int index, float value) {
         else if (inter_syl_dist >= 1.5)
             counters.pauses_by_length[5]++;
         
-        // Increase number of sentences if pause >= factor * average pause length
-        if (inter_syl_dist >= avg_inter_syl_dist * 2) // new sentence
-            counters.num_sentences++;
+        // Increase clause counter if pause >= factor * average pause length
+        if (inter_syl_dist >= avg_inter_syl_dist * 2) // new clause
+            counters.num_clauses++;
     }
     
     // Increase number of words
-    if (inter_syl_dist >= 0.125 * avg_inter_syl_dist) {
+    if (inter_syl_dist >= 0.25 * avg_inter_syl_dist) {
         counters.num_words++;
         counters.words_by_syllables[(wordpart>4) ? 3 : wordpart-1]++;
         wordpart = 0;
@@ -305,16 +305,16 @@ void ASP_process_minimum(int index, float value) {
 void ASP_compute_comprehension_scores() {
     // Flesch Reading Ease
     counters.flesch_reading_ease = 0;
-    if (counters.num_words && counters.num_sentences) {
-        counters.flesch_reading_ease = 206.835 - 1.015 * ((float) counters.num_words)/counters.num_sentences -
+    if (counters.num_words && counters.num_clauses) {
+        counters.flesch_reading_ease = 206.835 - 1.015 * ((float) counters.num_words)/counters.num_clauses -
             84.6 * ((float) counters.num_syllables)/counters.num_words;
         counters.flesch_reading_ease = (float) fit_to_interval(counters.flesch_reading_ease, 0, 100);
     }
 
     // Flesch-Kincaid Grade Ease
     counters.flesch_kincaid_grade_ease = 0;
-    if (counters.num_sentences && counters.num_words) {
-        counters.flesch_kincaid_grade_ease = 0.39 * ((float) counters.num_words)/counters.num_sentences +
+    if (counters.num_clauses && counters.num_words) {
+        counters.flesch_kincaid_grade_ease = 0.39 * ((float) counters.num_words)/counters.num_clauses +
             11.8 * ((float) counters.num_syllables)/counters.num_words - 15.59;
         counters.flesch_kincaid_grade_ease = (float) fit_to_interval(counters.flesch_kincaid_grade_ease, 0, 20);
     }
@@ -322,8 +322,8 @@ void ASP_compute_comprehension_scores() {
     // Gunning Fog Index
     int num_hard_words = counters.words_by_syllables[2] + counters.words_by_syllables[3];
     counters.gunning_fog_index = 0;
-    if (counters.num_sentences && counters.num_words) {
-        counters.gunning_fog_index = 0.4 * ( ((float) counters.num_words)/counters.num_sentences +
+    if (counters.num_clauses && counters.num_words) {
+        counters.gunning_fog_index = 0.4 * ( ((float) counters.num_words)/counters.num_clauses +
                                             ((float) num_hard_words)/counters.num_words );
         counters.gunning_fog_index = (float) fit_to_interval(counters.gunning_fog_index, 0, 20);
     }
@@ -339,5 +339,5 @@ void ASP_compute_comprehension_scores() {
 void ASP_print() {
     // q_length, q_syllables, q_words, q_sentences
     printf("%f,%d,%d,%d\n", counters.talk_duration,
-           counters.num_syllables, counters.num_words, counters.num_sentences); fflush(stdout);
+           counters.num_syllables, counters.num_words, counters.num_clauses); fflush(stdout);
 }

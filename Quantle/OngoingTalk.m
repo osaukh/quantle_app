@@ -103,7 +103,7 @@ void zeroFields () {
     td.talkLength = @( counters.talk_duration );
     td.totalSyllables = @( counters.num_syllables );
     td.totalWords = @( counters.num_words );
-    td.totalSentences = @( counters.num_sentences );
+    td.totalSentences = @( counters.num_clauses );
     
     // rate
     if (counters.talk_duration)
@@ -124,7 +124,7 @@ void zeroFields () {
     
     // histograms and classifications
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        [td.histRateAsSyllablesPerMinute addObject:@(counters.rate_histogram[i])];
+        [td.histRateAsSyllablesPerMinute addObject:@(counters.pace_histogram[i])];
     for (int i=0; i<4; i++)
         [td.classWordsBySyllables addObject:@(counters.words_by_syllables[i])];
     for (int i=0; i<6; i++)
@@ -132,7 +132,7 @@ void zeroFields () {
     for (int i=0; i<HIST_MAX_VALUES; i++)
         [td.histPitch addObject:@(counters.pitch_histogram[i])];
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        [td.histVolume addObject:@(counters.volume_histogram[i])];
+        [td.histVolume addObject:@(counters.power_histogram[i])];
     
     // comprehension scores
     ASP_compute_comprehension_scores();
@@ -163,29 +163,29 @@ void zeroFields () {
 +(void) setRateData {
     int num_rate = 0, sum_rate = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++) {
-        sum_rate += (counters.rate_histogram[i] * (i * 30));
-        num_rate += counters.rate_histogram [i];
+        sum_rate += (counters.pace_histogram[i] * (i * 30));
+        num_rate += counters.pace_histogram [i];
     }
     
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-td.meanRateAsSyllablesPerMinute.floatValue/30,2) * 900 ) * counters.rate_histogram[i];
+        rmse += ( powf(i-td.meanRateAsSyllablesPerMinute.floatValue/30,2) * 900 ) * counters.pace_histogram[i];
     td.varRateAsSyllablesPerMinute = (num_rate > 0 && td.meanRateAsSyllablesPerMinute > 0) ? @( sqrtf(rmse / num_rate) / [td.meanRateAsSyllablesPerMinute floatValue] * 100) : @(0);
 }
 
 +(void) setVolumeData {
     int num_volume = 0, sum_volume = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++) {
-        sum_volume += counters.volume_histogram[i] * i;
-        num_volume += counters.volume_histogram[i];
+        sum_volume += counters.power_histogram[i] * i;
+        num_volume += counters.power_histogram[i];
     }
     td.meanVolume = (num_volume > 0) ? @( ((float) sum_volume) / num_volume ) : @(0);
     
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-td.varVolume.floatValue,2) ) * counters.volume_histogram[i];
+        rmse += ( powf(i-td.varVolume.floatValue,2) ) * counters.power_histogram[i];
     td.varVolume = (num_volume > 0) ? @( sqrtf(rmse / num_volume) / [td.meanVolume floatValue] * 100 ) : @(0);
 }
 

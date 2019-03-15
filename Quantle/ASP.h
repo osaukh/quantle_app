@@ -38,7 +38,7 @@ extern "C" {
 #include <string.h>
 #include <assert.h>
     
-#include "ExtremaVector.h"
+//#include "ExtremaVector.h"
 #include "TargetConditionals.h"
 #include "Utils.h"
     
@@ -61,19 +61,19 @@ extern "C" {
         int num_syllables;
         int num_words;
         int num_pauses;
-        int num_sentences;
+        int num_clauses;
         
         // online mean computation
         float sum_pause_duration;
         
         // classifications and histograms updated online
-        int rate_histogram[HIST_MAX_VALUES];   // varies from 100 to 300 with step 4
+        int pace_histogram[HIST_MAX_VALUES];        // varies from 100 to 300 with step 4
         int words_by_syllables[4];                  // 1, 2, 3, 4+
         int pauses_by_length[6];                    // [.1-.2], [.2-.4], [.4-.7], [.7-1], [1-1.5], [>1.5]
         int pitch_histogram[HIST_MAX_VALUES];       // varies from 50 to 350 with step 6
-        int volume_histogram[HIST_MAX_VALUES];      // varies from 0 to 10 with step 0.2
+        int power_histogram[HIST_MAX_VALUES];       // varies from 0 to 10 with step 0.2
         
-        // comprehension scores, computed after the talk
+        // comprehension scores, computed after the talk is over
         float flesch_reading_ease;
         float flesch_kincaid_grade_ease;
         float gunning_fog_index;
@@ -87,7 +87,7 @@ extern "C" {
 
     void ASP_syllable_estimation(void *buffer, unsigned int len);
     void ASP_pitch_estimation(void *buffer, unsigned int len);
-    void ASP_volume_estimation(float value);
+    void ASP_power_estimation(float value);
     
     void ASP_inc_talkduration(void);
     void ASP_process_maximum(int index, float value);

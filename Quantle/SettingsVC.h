@@ -76,7 +76,6 @@
 - (IBAction)toggleDebugMode:(id)sender;
 
 
-
 /**
  A BOOL indicating whether or not we've reached the end of the file
  */
@@ -88,31 +87,25 @@
 
 
 /**
- * TODO
+ * For test purposes only. Process local file.
  *
  * @param sender  Object of the sender view.
  */
 - (IBAction)runTestLocalFile:(id)sender;
+
 /**
- * TODO
- *
- * @param sender  Object of the sender view.
- */
-//- (IBAction)runTestRemoteFile:(id)sender;
-/**
- * TODO
+* For test purposes only. Process batch.
  *
  * @param sender  Object of the sender view.
  */
 - (IBAction)runTestBatch:(id)sender;
 
 /**
- * TODO
+ * For test purposes only. Print out statistics on all processed talks.
  *
  * @param sender  Object of the sender view.
  */
 - (IBAction)runPrintHistoryData:(id)sender;
-
 
 /**
  * For test purposes only. Hide these in the final release.

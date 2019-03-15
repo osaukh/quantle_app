@@ -67,7 +67,7 @@
     // Set debug switch
     [self.debugModeSwitch setOn:self.appDelegate.debugMode];
     
-    // HIDING TEST FIELDS FOR RELEASE
+    // For test purposes only. HIDING UI TEST FIELDS FOR RELEASE
     self.runFile.hidden = YES;
     self.runBatch.hidden = YES;
     self.runHistory.hidden = YES;
@@ -86,7 +86,6 @@
     [textField resignFirstResponder];
     
     return YES;
-    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -188,8 +187,6 @@
     NSLog(@"Debug mode set to %d.", self.appDelegate.debugMode);
 }
 
-
-
 // TODO: optimize: same function is available in RecordTalkVC
 - (NSString *)documentsDirectoryPath{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -197,13 +194,11 @@
     return basePath;
 }
 
-
 NSString *fileName;
 bool noFin;
 
 - (IBAction)runTestLocalFile:(id)sender {
-//    fileName = @"one/audio1000hzsine3s.wav";
-    fileName = @"one/lewinsky_snippet.wav";
+    fileName = @"one/audio1000hzsine3s.wav";
     NSString *wavName = [NSString stringWithFormat:@"%@/%@", [self documentsDirectoryPath], fileName];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -216,31 +211,6 @@ bool noFin;
     while (noFin)
         [NSThread sleepForTimeInterval:2.0f];
 }
-
-//- (IBAction)runTestRemoteFile:(id)sender {
-//    fileName = @"tik25/Thiele_20150605_182289.wav";
-//    NSString *urlPath = [NSString stringWithFormat:@"%@/%@", @"http://127.0.0.1/quantle/", fileName];
-//    NSURL *url = [NSURL URLWithString:urlPath];
-//    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'  'HH':'mm':'ss"];
-//    NSString *dateString = [dateFormatter stringFromDate: [NSDate date]];
-//    NSLog(@"[%@] Test started at %@", urlPath, dateString);
-//    
-//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-//    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse * response, NSData *responseData, NSError *error) {
-//                                   if (responseData) {
-//                                       NSString *wavName = [urlPath lastPathComponent];
-//                                       NSString *wavPath = [[self documentsDirectoryPath]stringByAppendingPathComponent:wavName];
-//                                       // save file localy
-//                                       [responseData writeToFile:wavPath atomically:YES];
-//    
-//                                       noFin = true;
-//                                       [self readInWAVFile:wavPath];
-//                                   }
-//                               }];
-//}
 
 - (IBAction)runTestBatch:(id)sender {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -292,15 +262,12 @@ bool noFin;
 }
 
 -(void)readInWAVFile: (NSString*) wavPath {
-//    [EZOutput sharedOutput].outputDataSource = self;
     [EZOutput sharedOutput].dataSource = self;
     self.audioFile = [EZAudioFile audioFileWithURL:[NSURL fileURLWithPath:wavPath]];
     self.audioFile.delegate = self;
-//    self.audioFile.audioFileDelegate = self;
     self.eof = NO;
     
     // Set the client format from the EZAudioFile on the output
-//    [[EZOutput sharedOutput] setAudioStreamBasicDescription:self.audioFile.clientFormat];
     [[EZOutput sharedOutput] setClientFormat:self.audioFile.clientFormat];
     [[EZOutput sharedOutput] startPlayback];
 }
@@ -315,16 +282,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     ASP_process_buffer((void *) *buffer, bufferSize);
 }
 
-//-(void)audioFile:(EZAudioFile *)audioFile
-// updatedPosition:(SInt64)framePosition {}
-
 #pragma mark - EZOutputDataSource
-
-//- (OSStatus)        output:(EZOutput *)output
-// shouldFillAudioBufferList:(AudioBufferList *)audioBufferList
-//        withNumberOfFrames:(UInt32)frames
-//                 timestamp:(const AudioTimeStamp *)timestamp;
-
 
 -(OSStatus)output:(EZOutput *)output shouldFillAudioBufferList:(AudioBufferList *)audioBufferList withNumberOfFrames:(UInt32)frames timestamp:(const AudioTimeStamp *)timestamp {
     if( self.audioFile ){
