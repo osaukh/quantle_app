@@ -27,7 +27,7 @@ Non-Personal and Personal Data which is shared with us is used for the following
 * To estimate the number of users accessing the service from different social groups;
 * To help improve audio processing algorithms and improve the service.
 
-All data the users share is submitted to the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc8JE2cSuvdmUnAv2PJ8JddazDo3SlBVhFnmkdbuMC7mo9geQ/viewform), where an interested user can obtained a full list of Non-Personal and Personal Data collected by the Quantle app.
+All data the users share is submitted to the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc8JE2cSuvdmUnAv2PJ8JddazDo3SlBVhFnmkdbuMC7mo9geQ/viewform), where an interested user can obtain the full list of Non-Personal and Personal Data collected by Quantle.
 
 For research purposes, we may release the provided data in aggregate form (for instance, by publishing trends in app usage). We will not release individual information, only aggregate information.
 
