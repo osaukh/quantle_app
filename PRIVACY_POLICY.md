@@ -1,4 +1,4 @@
-# Quantle Privacy Policy
+# Privacy Policy
 
 Quantle is a digital presentation coach. When in use, it processes smartphone's audio data in real time to estimate talk characteristics: pace, pause duration, pitch and power. Quantle does processing locally and can work in the flight mode. 
 
