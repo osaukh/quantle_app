@@ -1,14 +1,17 @@
 # quantle_app
 
-Quantle is mobile app written for iOS, which uses a microphone to listen to a talk and evaluate the talk's quality. Quantle is a presentation coach. 
+[Quantle](http://www.olgasaukh.com/quantle) is mobile app which implements a digial presentation coach. It is written for iOS and is available through [iTunes apple store](https://itunes.apple.com/us/app/quantle/id1241930976?mt=8). Quantle is **free of charge** an **open source**. Quantle code is available on [GitHub](https://github.com/osaukh/quantle_app).
 
-It estimates the number of syllables and words you say, computes the length of pauses you make, estimates your pitch and volume. Quantle works for languages in which the number of syllables in a word is determined by the number of vowels (e.g., English, German, Russian), although we tuned Quantle mainly for English.
+Quantle stems from a research community where the need for a socially unbiased presentation coach is high. To find more information about the performance of Quantle, please see our [paper](https://bit.ly/2Oaa0FK.saukh19quantle.pdf).
 
-Features:
-* Respects your privacy: Quantle neither stores your talk nor communicates any of its parts. Microphone data is processed in chunks and destroyed immediately afterwards.
-* Words, pauses, pitch & volume analysis: Quantle estimates the number of syllables, words and pauses in your speech. It also computes your pitch and how loud you talk.
-* Complexity scores: Quantle estimates complexity of your speech using dedicated complexity metrics.
-* Fairness & repeatability: Good presentation style is a matter of personal taste. Quantle is the first app to evaluate your speech in a fair and repeatitive way with no human bias.
-* Progress tracking: Quantle maintains a history of your talks. Track your progress as you practice your talk before the presentation.
-* Open source.
+Quantle estimates the number of syllables and words the speaker says, computes the length of pauses, estimates pace, pitch, power of the delivery and, most importantly, variability of the characteristics throughout the talk. The app development is inspired by the need to evaluate talk effectiveness without a human coach in a fair, repeatable, and (socially) unbiased way. Quantle works for languages in which the number of syllables in a word is determined by the number of vowels, although we tuned Quantle primarily for the English language. 
 
+### Features
+* Quantle respects user's privacy. Quantle neither stores the audio nor communicates any of its parts. Microphone data is processed in chunks and destroyed immediately afterwards. See our [privacy policy](PRIVACY_POLICY.md).
+* Pace, pause, pitch & power analysis.
+* Quantle estimates complexity of a talk by computing complexity metrics (=adapted readability metrics from the literature).
+* Good presentation style is a matter of personal taste. Quantle achieves fairness and repeatability by providing a digital presentation coach which lacks social bias.
+* Quantle maintains a history of talk evaluations to track the progress as we rehearse.
+* The app is free of charge and the code is open source ([MIT license](LICENSE.txt)).
+
+If you have any questions, please do not hesitate to contact us: chatterboxbit@gmail.com.
