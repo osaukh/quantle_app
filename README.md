@@ -1,4 +1,4 @@
-# Quantle app
+# Quantle App
 
 [Quantle](http://www.olgasaukh.com/quantle) is mobile app which implements a digial presentation coach. It is written for iOS and is available through [iTunes apple store](https://itunes.apple.com/us/app/quantle/id1241930976?mt=8). Quantle is **free of charge** an **open source**. Quantle code is available on [GitHub](https://github.com/osaukh/quantle_app).
 
