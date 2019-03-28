@@ -342,7 +342,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     
     [alert showAlertInView:self
                  withTitle:@"Instructions"
-              withSubtitle:@"Quantle works for languages in which syllables are defined by the number of vowels (like English, German, ...). Place your smartphone to ensure the amplitude of the voice signal exceeds the light blue area in the plot. Quantle does not work with background music or any other disturbing background sounds."
+              withSubtitle:@"Quantle works for languages in which syllables are defined by the number of vowels. Place your smartphone close to the speaker. Quantle does NOT work with background music or any other disturbing background sounds. Quantle does NOT work if a talk is interrupted and is very slowly paced."
            withCustomImage:imgMyImage
        withDoneButtonTitle:nil
                 andButtons:nil];
