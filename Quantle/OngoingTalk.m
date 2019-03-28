@@ -185,7 +185,7 @@ void zeroFields () {
     // find var
     float rmse = 0;
     for (int i=0; i<HIST_MAX_VALUES; i++)
-        rmse += ( powf(i-td.varVolume.floatValue,2) ) * counters.power_histogram[i];
+        rmse += ( powf(i-td.meanVolume.floatValue,2) ) * counters.power_histogram[i];
     td.varVolume = (num_volume > 0) ? @( sqrtf(rmse / num_volume) / [td.meanVolume floatValue] * 100 ) : @(0);
 }
 
