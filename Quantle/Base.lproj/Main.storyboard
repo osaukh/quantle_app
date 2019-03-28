@@ -1399,7 +1399,7 @@
                                                             <rect key="frame" x="163" y="84.5" width="51" height="31"/>
                                                             <color key="backgroundColor" red="0.0" green="0.69803921568627447" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="onTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="toggleMicrophone:" destination="Wdr-fY-mjM" eventType="valueChanged" id="F1q-Md-Uxv"/>
                                                             </connections>
@@ -1447,9 +1447,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJm-n1-pmS">
-                                                    <rect key="frame" x="248" y="4" width="84" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="244" y="4" width="88" height="30"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Stop &amp; Save">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -1457,9 +1458,10 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RH-l7-Fjq">
-                                                    <rect key="frame" x="43" y="4" width="94" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="43" y="4" width="99" height="30"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Clear &amp; Reset">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -1467,6 +1469,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1RH-l7-Fjq" secondAttribute="trailingMargin" id="24K-eF-5Lp"/>
                                                 <constraint firstItem="ZJm-n1-pmS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2RV-OU-Qkf" secondAttribute="leadingMargin" id="DtT-ZD-QST"/>
@@ -2027,7 +2030,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <attributedString key="attributedText">
                                             <fragment>
-                                                <mutableString key="content">Your voice is the best tool in your delivery toolbox. 
+                                                <string key="content">Your voice is the best tool in your delivery toolbox. 
 
 Quantle is your presentation coach!
 
@@ -2036,7 +2039,7 @@ With Quantle you can evaluate your presentation quality and compare it to anyone
 Quantle app respects your privacy: It neither stores your talk nor communicates any of its parts. All estimates are computed in real time.
 
 Learn more:
-</mutableString>
+</string>
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="14"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
