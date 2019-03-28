@@ -106,10 +106,11 @@
     CGRect frame_X_FGL = self.FGL_X.frame;
     frame_X_FGL.origin.x= (SCREEN_WIDTH-10) / (16-4) * (fit_to_interval([td.forecastGradeLevel doubleValue],4,16) - 4);
     self.FGL_X.frame= frame_X_FGL;
-    
+
+    // Disable "Share" button if already shared
     if (td.isShared.intValue == 1) {
         [self.shareBtn setTitle:@"Shared!" forState:UIControlStateNormal];
-        self.shareBtn.enabled = NO;
+//        self.shareBtn.enabled = NO;
     }
     
     [self.tableView reloadData];
@@ -163,7 +164,7 @@
                completionHandler:^(BOOL success) {
                    NSLog(@"Open %@: %d",query,success);
                    [self.shareBtn setTitle:@"Shared!" forState:UIControlStateNormal];
-                   self.shareBtn.enabled = NO;
+//                   self.shareBtn.enabled = NO;
                    self->td.isShared = [NSNumber numberWithInt:1];
                }];
         }
