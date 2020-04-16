@@ -15,3 +15,18 @@ Quantle estimates the number of syllables and words the speaker says, computes t
 * The app is free of charge and the code is open source ([MIT license](LICENSE.txt)).
 
 If you have any questions, please do not hesitate to contact us: chatterboxbit@gmail.com.
+
+### Reference
+
+If you use the code please cite:
+
+<pre>@inproceedings{saukh2019quantle, 
+  author = {Saukh, Olga and Maag, Balz}, 
+  title = {Quantle: Fair and Honest Presentation Coach in Your Pocket}, 
+  year = {2019}, 
+  publisher = {Association for Computing Machinery}, 
+  doi = {10.1145/3302506.3310405}, 
+  booktitle = {Proceedings of the 18th International Conference on Information Processing in Sensor Networks}, 
+  pages = {253–264}, 
+  series = {IPSN ’19}
+}</pre>
